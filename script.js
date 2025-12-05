@@ -1,5 +1,5 @@
 const games = [
-    { name: "Example Game 1", url: "games/game1/index.html" },
+    { name: "Example Game 1", url: "games/Celeste/index.html" },
     { name: "Example Game 2", url: "games/game2/index.html" }
 ];
 
