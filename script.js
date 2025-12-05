@@ -1,7 +1,7 @@
 const games = [
     { name: "Celeste", url: "games/celeste/index.html" },
     { name: "Slow roads", url: "games/Slow roads/index.html" }
-    { name: "Hollow knight", url: "games/Hollow knight/index.html" }
+    { name: "Hollow knight", url: "games/Hollow knight/index.html" },
 ];
 
 const list = document.getElementById("gameList");
