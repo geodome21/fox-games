@@ -30,16 +30,20 @@ header {
 #gameList {
     list-style:none;
     padding:20px;
+    text-align: center;
 }
 #gameList li {
-    padding: 0;
-    margin: 0 0 6px 0;
-    border-radius: 0;
-    background: transparent;
-    cursor: default;
-    transition: none;
+    /* bubble styling */
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 0 0 8px 0;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
     outline: none;
     -webkit-tap-highlight-color: transparent;
+    text-align: center;
 }
 
 #gameList li:focus,
@@ -49,11 +53,23 @@ header {
 }
 
 .dark #gameList li {
-    background: transparent;
+    background: rgba(255,255,255,0.08);
 }
 
 /* keep interactions but visually plain */
 #gameList li:hover {
-    transform: none;
-    background: transparent;
+    transform: translateY(-3px);
+    background: rgba(0,0,0,0.10);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+#gameList li:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.10);
+}
+
+#gameList li:focus,
+#gameList li:focus-visible {
+    outline: none;
+    box-shadow: none;
 }
