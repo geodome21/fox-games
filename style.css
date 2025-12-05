@@ -31,21 +31,21 @@ header {
     list-style:none;
     padding:20px;
 }
-
 #gameList li {
-    padding:12px;
-    margin-bottom:8px;
-    border-radius:6px;
-    background: rgba(0,0,0,0.05);
-    cursor:pointer;
-    transition: 0.2s;
+    padding: 0;
+    margin: 0 0 6px 0;
+    border-radius: 0;
+    background: transparent;
+    cursor: default;
+    transition: none;
 }
 
 .dark #gameList li {
-    background: rgba(255,255,255,0.1);
+    background: transparent;
 }
 
+/* keep interactions but visually plain */
 #gameList li:hover {
-    transform: translateX(5px);
-    background: rgba(0,0,0,0.15);
+    transform: none;
+    background: transparent;
 }
