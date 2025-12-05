@@ -2,7 +2,7 @@ const games = [
     { name: "Celeste", url: "games/celeste/index.html" },
     { name: "Slow roads", url: "games/Slow roads/index.html" },
     { name: "Hollow Knight", url: "games/Hollow knight/index.html" },
-    { name: "Game 5", url: "games/game5/index.html" },
+    { name: "Candy Crush", url: "games/Candy Crush/index.html" },
     { name: "Game 6", url: "games/game6/index.html" },
     { name: "Game 7", url: "games/game7/index.html" },
     { name: "Game 8", url: "games/game8/index.html" },
