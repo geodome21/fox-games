@@ -28,15 +28,21 @@ header {
 }
 
 #gameList {
-    list-style:none;
-    padding:20px;
-    text-align: center;
+    list-style: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center the list container */
+    gap: 8px;
 }
+
 #gameList li {
-    /* bubble styling */
-    display: inline-block;
-    padding: 8px 14px;
-    margin: 0 0 8px 0;
+    /* stacked-list bubble styling */
+    display: block;
+    width: 100%;
+    max-width: 640px; /* constrain the bubble width */
+    padding: 10px 16px;
+    margin: 0;
     border-radius: 8px;
     background: rgba(0,0,0,0.05);
     cursor: pointer;
