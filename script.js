@@ -6,7 +6,6 @@ const games = [
 const list = document.getElementById("gameList");
 const search = document.getElementById("search");
 const themeToggle = document.getElementById("themeToggle");
-const tabBlanker = document.getElementById("tabBlanker");
 
 function renderGames(filter="") {
     list.innerHTML = "";
@@ -24,12 +23,5 @@ search.oninput = () => renderGames(search.value);
 
 themeToggle.onclick = () =>
     document.body.classList.toggle("dark");
-
-if (tabBlanker) {
-    tabBlanker.onclick = () => {
-        const w = window.open('about:blank', '_blank');
-        if (w) w.focus();
-    };
-}
 
 renderGames();
