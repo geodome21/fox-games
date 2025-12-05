@@ -1,6 +1,6 @@
 const games = [
     { name: "Celeste", url: "games/celeste/index.html" },
-    { name: "Example Game 3", url: "games/Slow roads/index.html" }
+    { name: "Slow roads", url: "games/Slow roads/index.html" }
 ];
 
 const list = document.getElementById("gameList");
