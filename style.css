@@ -38,6 +38,14 @@ header {
     background: transparent;
     cursor: default;
     transition: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#gameList li:focus,
+#gameList li:focus-visible {
+    outline: none;
+    box-shadow: none;
 }
 
 .dark #gameList li {
