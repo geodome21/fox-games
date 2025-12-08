@@ -22,7 +22,7 @@ const games = [
     { name: "Clash of Vikings", url: "games/clash of vikings/index.html" },
     { name: "Escape Road 2", url: "games/Escape Road 2/index.html" },
     { name: "Escape Road", url: "games/Escape Road/index.html" },
-    { name: "Game 28", url: "games/game28/index.html" },
+    { name: "Geometry dash", url: "games/geometry dash/index.html" },
     { name: "Game 29", url: "games/game29/index.html" },
     { name: "Game 30", url: "games/game30/index.html" },
 ];
