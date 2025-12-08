@@ -6,7 +6,7 @@ const games = [
     { name: "Buckshot roulette", url: "games/buckshot roulette/index.html" },
     { name: "Ultrakill", url: "games/ultrakill/index.html" },
     { name: "Deltarune", url: "games/Deltarune/index.html" },
-    { name: "Game 10", url: "games/game10/index.html" },
+    { name: "Time shooter", url: "games/Time shooter/index.html" },
     { name: "Game 11", url: "games/game11/index.html" },
     { name: "Game 12", url: "games/game12/index.html" },
     { name: "Game 13", url: "games/game13/index.html" },
