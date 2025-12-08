@@ -10,7 +10,7 @@ const games = [
     { name: "Three goblets", url: "games/Three goblets/index.html" },
     { name: "Dont you lecture me about your 30 dollar website", url: "games/Dont you lecture me about your 30 dollar website/index.html" },
     { name: "Bridge Race", url: "games/Bridge Race/index.html" },
-    { name: "Game 14", url: "games/game14/index.html" },
+    { name: "Bitlife", url: "games/bitlife/index.html" },
     { name: "Game 15", url: "games/game15/index.html" },
     { name: "Game 16", url: "games/game16/index.html" },
     { name: "Game 17", url: "games/game17/index.html" },
