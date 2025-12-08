@@ -20,7 +20,6 @@ const games = [
     { name: "Snow Rider 3D", url: "games/Snow rider 3D/index.html" },
     { name: "Clash of Vikings", url: "games/clash of vikings/index.html" },
     { name: "Escape Road 2", url: "games/Escape Road 2/index.html" },
-    { name: "Geometry dash", url: "games/geometry dash/index.html" },
     { name: "Game 29", url: "games/game29/index.html" },
     { name: "Game 30", url: "games/game30/index.html" },
 ];
