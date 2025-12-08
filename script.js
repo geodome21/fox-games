@@ -12,7 +12,7 @@ const games = [
     { name: "Bridge Race", url: "games/Bridge Race/index.html" },
     { name: "Bitlife", url: "games/bitlife/index.html" },
     { name: "Elastic Man", url: "games/Elastic man/index.html" },
-    { name: "Game 16", url: "games/game16/index.html" },
+    { name: "Minecraft 0.30", url: "games/Minecraft/index.html" },
     { name: "Game 17", url: "games/game17/index.html" },
     { name: "Game 18", url: "games/game18/index.html" },
     { name: "Game 19", url: "games/game19/index.html" },
