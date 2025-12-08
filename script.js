@@ -14,7 +14,7 @@ const games = [
     { name: "Elastic Man", url: "games/Elastic man/index.html" },
     { name: "Minecraft 0.30", url: "games/Minecraft/index.html" },
     { name: "Minecraft 1.8.8", url: "games/Minecraft 1.8.8/index.html" },
-    { name: "Game 19", url: "games/game19/index.html" },
+    { name: "Smash Karts", url: "games/Smash Karts/index.html" },
     { name: "Game 20", url: "games/game20/index.html" },
     { name: "Game 21", url: "games/game21/index.html" },
     { name: "Game 22", url: "games/game22/index.html" },
