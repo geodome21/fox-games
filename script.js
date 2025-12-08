@@ -18,7 +18,7 @@ const games = [
     { name: "level devil", url: "games/level devil/index.html" },
     { name: "Small World Cup", url: "games/Small world cup/index.html" },
     { name: "Drift Boss", url: "games/Drift Boss/index.html" },
-    { name: "Game 24", url: "games/game24/index.html" },
+    { name: "Snow Rider 3D", url: "games/Snow rider 3D/index.html" },
     { name: "Game 25", url: "games/game25/index.html" },
     { name: "Game 26", url: "games/game26/index.html" },
     { name: "Game 27", url: "games/game27/index.html" },
