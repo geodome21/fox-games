@@ -20,7 +20,7 @@ const games = [
     { name: "Drift Boss", url: "games/Drift Boss/index.html" },
     { name: "Snow Rider 3D", url: "games/Snow rider 3D/index.html" },
     { name: "Clash of Vikings", url: "games/clash of vikings/index.html" },
-    { name: "Game 26", url: "games/game26/index.html" },
+    { name: "Escape Road 2", url: "games/Escape Road 2/index.html" },
     { name: "Game 27", url: "games/game27/index.html" },
     { name: "Game 28", url: "games/game28/index.html" },
     { name: "Game 29", url: "games/game29/index.html" },
