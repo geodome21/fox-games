@@ -17,7 +17,7 @@ const games = [
     { name: "Burnout extreme drift 2", url: "games/Burnout extreme drift 2/index.html" },
     { name: "level devil", url: "games/level devil/index.html" },
     { name: "Small World Cup", url: "games/Small world cup/index.html" },
-    { name: "Game 23", url: "games/game23/index.html" },
+    { name: "Drift Boss", url: "games/Drift Boss/index.html" },
     { name: "Game 24", url: "games/game24/index.html" },
     { name: "Game 25", url: "games/game25/index.html" },
     { name: "Game 26", url: "games/game26/index.html" },
