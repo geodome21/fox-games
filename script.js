@@ -15,7 +15,7 @@ const games = [
     { name: "Minecraft 0.30", url: "games/Minecraft/index.html" },
     { name: "Minecraft 1.8.8", url: "games/Minecraft 1.8.8/index.html" },
     { name: "Smash Karts", url: "games/Smash Karts/index.html" },
-    { name: "Game 20", url: "games/game20/index.html" },
+    { name: "Burnout extreme drift 2", url: "games/Burnout extreme drift 2/index.html" },
     { name: "Game 21", url: "games/game21/index.html" },
     { name: "Game 22", url: "games/game22/index.html" },
     { name: "Game 23", url: "games/game23/index.html" },
