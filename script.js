@@ -19,7 +19,7 @@ const games = [
     { name: "Small World Cup", url: "games/Small world cup/index.html" },
     { name: "Drift Boss", url: "games/Drift Boss/index.html" },
     { name: "Snow Rider 3D", url: "games/Snow rider 3D/index.html" },
-    { name: "Game 25", url: "games/game25/index.html" },
+    { name: "Clash of Vikings", url: "games/clash of vikings/index.html" },
     { name: "Game 26", url: "games/game26/index.html" },
     { name: "Game 27", url: "games/game27/index.html" },
     { name: "Game 28", url: "games/game28/index.html" },
