@@ -29,6 +29,8 @@ const games = [
     { name: "Game 30", url: "games/game30/index.html" },
 ];
 
+// (No background animation) Keep script focused on game list and theme toggle
+
 const list = document.getElementById("gameList");
 const search = document.getElementById("search");
 const themeToggle = document.getElementById("themeToggle");
