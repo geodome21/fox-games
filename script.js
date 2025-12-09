@@ -22,6 +22,7 @@ const games = [
     { name: "Duck life 4", url: "games/Duck Life 4/index.html" },
     { name: "tattletail", url: "games/tattletail/index.html" },
     { name: "Crossy Road", url: "games/Crossy Road/index.html" },
+    { name: "Gunspin", url: "games/Gunspin/index.html" },
 ];  
 
 // (No background animation) Keep script focused on game list and theme toggle
