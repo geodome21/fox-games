@@ -20,8 +20,9 @@ const games = [
     { name: "Snow Rider 3D", url: "games/Snow rider 3D/index.html" },
     { name: "Clash of Vikings", url: "games/clash of vikings/index.html" },
     { name: "Escape Road 2", url: "games/Escape Road 2/index.html" },
-    { name: "Game 29", url: "games/game29/index.html" },
+    { name: "1v1.lol", url: "games/1v1.lol/index.html" },
     { name: "Game 30", url: "games/game30/index.html" },
+    { name: "Game 31", url: "games/game31/index.html" },
 ];
 
 // (No background animation) Keep script focused on game list and theme toggle
