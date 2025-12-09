@@ -23,6 +23,7 @@ const games = [
     { name: "tattletail", url: "games/tattletail/index.html" },
     { name: "Crossy Road", url: "games/Crossy Road/index.html" },
     { name: "Gunspin", url: "games/Gunspin/index.html" },
+    { name: "Polytrack", url: "games/Polytrack/index.html" },
 ];  
 
 // (No background animation) Keep script focused on game list and theme toggle
