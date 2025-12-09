@@ -19,8 +19,6 @@ const games = [
     { name: "Drift Boss", url: "games/Drift Boss/index.html" },
     { name: "Snow Rider 3D", url: "games/Snow rider 3D/index.html" },
     { name: "Clash of Vikings", url: "games/clash of vikings/index.html" },
-    { name: "1v1.lol", url: "games/1v1.lol/index.html" },
-    { name: "Escape road", url: "games/Escape road/index.html" },
     { name: "Duck life 4", url: "games/Duck Life 4/index.html" },
 ];
 
