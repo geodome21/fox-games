@@ -26,6 +26,8 @@ const games = [
     { name: "Polytrack", url: "games/Polytrack/index.html" },
     { name: "Slope", url: "games/Slope/index.html" },
     { name: "1v1.lol", url: "games/1v1 lol/index.html" },
+    { name: "Geometry dash", url: "games/Geometry dash/index.html" },
+
 ];  
 
 // (No background animation) Keep script focused on game list and theme toggle
