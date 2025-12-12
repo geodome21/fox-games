@@ -28,6 +28,7 @@ const games = [
     { name: "1v1.lol", url: "games/1v1.lol/index.html" },
     { name: "Geometry dash", url: "games/Geometry dash/index.html" },
     { name: "Minesweeper", url: "games/Minesweeper/index.html" },
+    { name: "nba jam", url: "games/nba jam/index.html" },
 
 ];  
 
