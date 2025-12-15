@@ -30,6 +30,7 @@ const games = [
     { name: "Minesweeper", url: "games/Minesweeper/index.html" },
     { name: "nba jam", url: "games/nba jam/index.html" },
     { name: "furious racing 3D", url: "games/furious racing 3D/index.html" },
+    { name: "Stick Merge", url: "games/Stick Merge/index.html" },
 ];  
 
 // (No background animation) Keep script focused on game list and theme toggle
