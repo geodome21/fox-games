@@ -1,4 +1,6 @@
 const games = [
+    { name: "1v1.lol", url: "games/1v1.lol/index.html" },
+    { name: "3D geometry dash", url: "games/3D geometry dash/index.html" },
     { name: "Celeste", url: "games/celeste/index.html" },
     { name: "Slow roads", url: "games/Slow roads/index.html" },
     { name: "Hollow Knight", url: "games/Hollow knight/index.html" },
@@ -25,7 +27,6 @@ const games = [
     { name: "Gunspin", url: "games/Gunspin/index.html" },
     { name: "Polytrack", url: "games/Polytrack/index.html" },
     { name: "Slope", url: "games/Slope/index.html" },
-    { name: "1v1.lol", url: "games/1v1.lol/index.html" },
     { name: "Geometry dash", url: "games/Geometry dash/index.html" },
     { name: "Minesweeper", url: "games/Minesweeper/index.html" },
     { name: "nba jam", url: "games/nba jam/index.html" },
@@ -37,7 +38,6 @@ const games = [
     { name: "Doblox", url: "games/Doblox/index.html" },
     { name: "Steal A Brainrot", url: "games/steal a brainrot/index.html" },
     { name: "Get Yoked", url: "games/Get yoked/index.html" },
-    { name: "3D geometry dash", url: "games/3D geometry dash/index.html" },
 ]
 
 
