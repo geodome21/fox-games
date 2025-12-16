@@ -40,6 +40,7 @@ const games = [
     { name: "Get Yoked", url: "games/Get yoked/index.html" },
     { name: "Age of War", url: "games/Age of war/index.html" },
     { name: "thats not my neighbor", url: "games/thats not my neighbor/index.html" },
+    { name: "Snow Road", url: "games/Snow road/index.html" },
 ]
 
 
