@@ -32,6 +32,8 @@ const games = [
     { name: "Stick Merge", url: "games/Stick Merge/index.html" },
     { name: "Smash Karts", url: "games/smash karts/index.html" },
     { name: "Basketball Stars", url: "games/Basketball stars/index.html" },
+]
+
 
 // (No background animation) Keep script focused on game list and theme toggle
 
