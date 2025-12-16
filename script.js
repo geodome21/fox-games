@@ -36,6 +36,7 @@ const games = [
     { name: "R.E.P.O", url: "games/R.E.P.O/index.html" },
     { name: "Doblox", url: "games/Doblox/index.html" },
     { name: "Steal A Brainrot", url: "games/steal a brainrot/index.html" },
+    { name: "Get Yoked", url: "games/Get yoked/index.html" },
 ]
 
 
