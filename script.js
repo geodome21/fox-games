@@ -34,6 +34,7 @@ const games = [
     { name: "Basketball Stars", url: "games/Basketball stars/index.html" },
     { name: "Super Star Car", url: "games/Super star car/index.html" },
     { name: "R.E.P.O", url: "games/R.E.P.O/index.html" },
+    { name: "Doblox", url: "games/Doblox/index.html" },
 ]
 
 
