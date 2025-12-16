@@ -38,6 +38,7 @@ const games = [
     { name: "Steal A Brainrot", url: "games/steal a brainrot/index.html" },
     { name: "Get Yoked", url: "games/Get yoked/index.html" },
     { name: "Hole.io", url: "games/Hole.io/index.html" },
+    { name: "3D geometry dash", url: "games/3D geometry dash/index.html" },
 ]
 
 
