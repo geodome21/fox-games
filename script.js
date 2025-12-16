@@ -32,6 +32,7 @@ const games = [
     { name: "Stick Merge", url: "games/Stick Merge/index.html" },
     { name: "Smash Karts", url: "games/smash karts/index.html" },
     { name: "Basketball Stars", url: "games/Basketball stars/index.html" },
+    { name: "Super Star Car", url: "games/Super star car/index.html" },
 ]
 
 
