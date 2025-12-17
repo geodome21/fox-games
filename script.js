@@ -44,6 +44,7 @@ const games = [
     { name: "Tanuki sunset", url: "games/tanuki sunset/index.html" },
     { name: "Deadly descent", url: "games/deadly descent/index.html" },
     { name: "Learn to fly", url: "games/learn to fly/index.html" },
+    { name: "Doom 64", url: "games/Doom 64/index.html" },
 ]
 
 
