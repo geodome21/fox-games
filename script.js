@@ -47,6 +47,7 @@ const games = [
     { name: "Doom 64", url: "games/Doom 64/index.html" },
     { name: "Learn to fly 3", url: "games/learn to fly 3/index.html" },
     { name: "Retro Bowl", url: "games/Retro Bowl/index.html" },
+    { name: "Escape Road", url: "games/Escape Road/index.html" },
 ]
 
 
