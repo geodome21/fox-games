@@ -45,6 +45,7 @@ const games = [
     { name: "Deadly descent", url: "games/deadly descent/index.html" },
     { name: "Learn to fly", url: "games/learn to fly/index.html" },
     { name: "Doom 64", url: "games/Doom 64/index.html" },
+    { name: "Learn to fly 3", url: "games/learn to fly 3/index.html" },
 ]
 
 
