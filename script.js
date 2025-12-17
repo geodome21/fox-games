@@ -49,6 +49,7 @@ const games = [
     { name: "Retro Bowl", url: "games/Retro Bowl/index.html" },
     { name: "Escape Road", url: "games/Escape Road/index.html" },
     { name: "Drive Mad", url: "games/Drive Mad/index.html" },
+    { name: "Superhot", url: "games/Super Hot/index.html" },
 ]
 
 
