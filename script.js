@@ -50,12 +50,12 @@ const games = [
     { name: "Escape Road", url: "games/Escape Road/index.html" },
     { name: "Drive Mad", url: "games/Drive Mad/index.html" },
     { name: "Superhot", url: "games/Super Hot/index.html" },
-    {name: "Friday Night Funkin", url: "games/Friday night funkin/index.html" },
-    {name: "Five Nights At Freddys", url: "games/five nights at freddys/index.html" },
-    {name: "Doge Miner", url: "games/Doge Miner/index.html" },
-    {name: "Wordle", url: "games/Wordle/index.html" },
-    {name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
-    {name: "Draw climber", url: "games/Draw climber/index.html" },
+    { name: "Friday Night Funkin", url: "games/Friday night funkin/index.html" },
+    { name: "Five Nights At Freddys", url: "games/five nights at freddys/index.html" },
+    { name: "Doge Miner", url: "games/Doge Miner/index.html" },
+    { name: "Wordle", url: "games/Wordle/index.html" },
+    { name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
+    { name: "Draw climber", url: "games/Draw climber/index.html" },
 ]
 
 
