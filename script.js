@@ -2,6 +2,7 @@ const games = [
     { name: "1v1.lol", url: "games/1v1.lol/index.html" },
     { name: "3D geometry dash", url: "games/3D geometry dash/index.html" },
     { name: "Age of War", url: "games/Age of war/index.html" },
+    { name: "Bad Time simulator", url: "games/Bad Time simulator/index.html" },
     { name: "Basketball Stars", url: "games/Basketball stars/index.html" },
     { name: "Bitlife", url: "games/bitlife/index.html" },
     { name: "Buckshot roulette", url: "games/buckshot roulette/index.html" },
@@ -14,11 +15,11 @@ const games = [
     { name: "Deltarune", url: "games/Deltarune/index.html" },
     { name: "Doblox", url: "games/Doblox/index.html" },
     { name: "Doge Miner", url: "games/Doge Miner/index.html" },
+    { name: "Dont you lecture me about your 30 dollar website", url: "games/Dont you lecture me about your 30 dollar website/index.html" },
     { name: "Slow roads", url: "games/Slow roads/index.html" },
     { name: "Hollow Knight", url: "games/Hollow knight/index.html" },
     { name: "Ultrakill", url: "games/ultrakill/index.html" },
     { name: "Time shooter", url: "games/Time shooter/index.html" },
-    { name: "Dont you lecture me about your 30 dollar website", url: "games/Dont you lecture me about your 30 dollar website/index.html" },
     { name: "Bridge Race", url: "games/Bridge Race/index.html" },
     { name: "Elastic Man", url: "games/Elastic man/index.html" },
     { name: "Minecraft 0.30", url: "games/Minecraft/index.html" },
@@ -58,7 +59,6 @@ const games = [
     { name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
     { name: "Draw climber", url: "games/Draw climber/index.html" },
     { name: "Papas Pizzaria", url: "games/Papas pizzaria/index.html" },
-    { name: "Bad Time simulator", url: "games/Bad Time simulator/index.html" },
 ]
 
 
