@@ -11,6 +11,7 @@ const games = [
     { name: "Crossy Road", url: "games/Crossy Road/index.html" },
     { name: "Deadly descent", url: "games/deadly descent/index.html" },
     { name: "Deltarune", url: "games/Deltarune/index.html" },
+    { name: "Doblox", url: "games/Doblox/index.html" },
     { name: "Slow roads", url: "games/Slow roads/index.html" },
     { name: "Hollow Knight", url: "games/Hollow knight/index.html" },
     { name: "Ultrakill", url: "games/ultrakill/index.html" },
@@ -37,7 +38,6 @@ const games = [
     { name: "Smash Karts", url: "games/smash karts/index.html" },
     { name: "Super Star Car", url: "games/Super star car/index.html" },
     { name: "R.E.P.O", url: "games/R.E.P.O/index.html" },
-    { name: "Doblox", url: "games/Doblox/index.html" },
     { name: "Steal A Brainrot", url: "games/steal a brainrot/index.html" },
     { name: "Get Yoked", url: "games/Get yoked/index.html" },
     { name: "thats not my neighbor", url: "games/thats not my neighbor/index.html" },
@@ -56,6 +56,7 @@ const games = [
     { name: "Wordle", url: "games/Wordle/index.html" },
     { name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
     { name: "Draw climber", url: "games/Draw climber/index.html" },
+    { name: "Papas Pizzaria", url: "games/Papas pizzaria/index.html" },
 ]
 
 
