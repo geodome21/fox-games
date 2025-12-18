@@ -7,6 +7,9 @@ const games = [
     { name: "Buckshot roulette", url: "games/buckshot roulette/index.html" },
     { name: "Candy Crush", url: "games/Candy Crush/index.html" },
     { name: "Celeste", url: "games/celeste/index.html" },
+    { name: "Clash of Vikings", url: "games/clash of vikings/index.html" },
+    { name: "Crossy Road", url: "games/Crossy Road/index.html" },
+    { name: "Deadly descent", url: "games/deadly descent/index.html" },
     { name: "Slow roads", url: "games/Slow roads/index.html" },
     { name: "Hollow Knight", url: "games/Hollow knight/index.html" },
     { name: "Ultrakill", url: "games/ultrakill/index.html" },
@@ -22,10 +25,8 @@ const games = [
     { name: "Small World Cup", url: "games/Small world cup/index.html" },
     { name: "Drift Boss", url: "games/Drift Boss/index.html" },
     { name: "Snow Rider 3D", url: "games/Snow rider 3D/index.html" },
-    { name: "Clash of Vikings", url: "games/clash of vikings/index.html" },
     { name: "Duck life 4", url: "games/Duck Life 4/index.html" },
     { name: "tattletail", url: "games/tattletail/index.html" },
-    { name: "Crossy Road", url: "games/Crossy Road/index.html" },
     { name: "Gunspin", url: "games/Gunspin/index.html" },
     { name: "Polytrack", url: "games/Polytrack/index.html" },
     { name: "Slope", url: "games/Slope/index.html" },
@@ -42,7 +43,6 @@ const games = [
     { name: "thats not my neighbor", url: "games/thats not my neighbor/index.html" },
     { name: "Snow Road", url: "games/Snow road/index.html" },
     { name: "Tanuki sunset", url: "games/tanuki sunset/index.html" },
-    { name: "Deadly descent", url: "games/deadly descent/index.html" },
     { name: "Learn to fly", url: "games/learn to fly/index.html" },
     { name: "Doom 64", url: "games/Doom 64/index.html" },
     { name: "Learn to fly 3", url: "games/learn to fly 3/index.html" },
@@ -54,6 +54,7 @@ const games = [
     {name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
     {name: "Five Nights At Freddys", url: "games/five nights at freddys/index.html" },
     {name: "Doge Miner", url: "games/Doge Miner/index.html" },
+    {name: "Wordle", url: "games/Wordle/index.html" },
 ]
 
 
