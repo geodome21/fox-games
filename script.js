@@ -57,6 +57,7 @@ const games = [
     { name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
     { name: "Draw climber", url: "games/Draw climber/index.html" },
     { name: "Papas Pizzaria", url: "games/Papas pizzaria/index.html" },
+    { name: "Bad Time simulator", url: "games/Bad Time simulator/index.html" },
 ]
 
 
