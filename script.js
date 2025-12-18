@@ -10,10 +10,10 @@ const games = [
     { name: "Clash of Vikings", url: "games/clash of vikings/index.html" },
     { name: "Crossy Road", url: "games/Crossy Road/index.html" },
     { name: "Deadly descent", url: "games/deadly descent/index.html" },
+    { name: "Deltarune", url: "games/Deltarune/index.html" },
     { name: "Slow roads", url: "games/Slow roads/index.html" },
     { name: "Hollow Knight", url: "games/Hollow knight/index.html" },
     { name: "Ultrakill", url: "games/ultrakill/index.html" },
-    { name: "Deltarune", url: "games/Deltarune/index.html" },
     { name: "Time shooter", url: "games/Time shooter/index.html" },
     { name: "Dont you lecture me about your 30 dollar website", url: "games/Dont you lecture me about your 30 dollar website/index.html" },
     { name: "Bridge Race", url: "games/Bridge Race/index.html" },
@@ -54,7 +54,8 @@ const games = [
     {name: "Five Nights At Freddys", url: "games/five nights at freddys/index.html" },
     {name: "Doge Miner", url: "games/Doge Miner/index.html" },
     {name: "Wordle", url: "games/Wordle/index.html" },
-    {name: "Super Smash Bros 64", url: "games/Suoer Smash Bros 64/index.html" },
+    {name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
+    {name: "Draw climber", url: "games/Draw climber/index.html" },
 ]
 
 
