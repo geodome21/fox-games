@@ -118,11 +118,11 @@
 
     this.x += this.vx; this.y += this.vy;
 
-    // wrap edges so particles reappear on opposite sides
-    if (this.x < -20) this.x = w + 20;
-    if (this.x > w + 20) this.x = -20;
-    if (this.y < -20) this.y = h + 20;
-    if (this.y > h + 20) this.y = -20;
+    // bounce off edges to keep particles on screen
+    if (this.x < 0) { this.x = 0; this.vx = -this.vx; }
+    if (this.x > w) { this.x = w; this.vx = -this.vx; }
+    if (this.y < 0) { this.y = 0; this.vy = -this.vy; }
+    if (this.y > h) { this.y = h; this.vy = -this.vy; }
 
     this.age++;
   }
