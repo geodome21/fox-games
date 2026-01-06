@@ -64,6 +64,7 @@ const games = [
     { name: "Five Nights at Freddys 4", url: "games/five nights at freddys 4/index.html" },
     { name: "Five Nights at Freddys 4 halloween", url: "games/five nights at freddys 4 halloween/index.html" },
     { name: "Five Nights at Freddys Ultimate Custom Night", url: "games/five nights at freddys ultimate custom night/index.html" },
+    { name: "Five Nights at Freddys Sister Location", url: "games/five nights at freddys sister location/index.html" },
 ]
 
 
