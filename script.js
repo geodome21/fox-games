@@ -36,7 +36,7 @@ const games = [
     { name: "Five Nights at Freddys Ultimate Custom Night", url: "games/five nights at freddys ultimate custom night/index.html" },
     { name: "Five Nights at freddys world", url: "games/Five nights at freddys World/index.html" },
     { name: "Friday Night Funkin", url: "games/friday night funkin/index.html" },
-    { name: "Friday Night Funkin Dustin", url: "games/friday night funkin dustin/index.html" },
+    { name: "Friday Night Funkin Dustin", url: "games/Friday Night Funkin dustin/index.html" },
     { name: "Geometry dash", url: "games/Geometry dash/index.html" },
     { name: "Get Yoked", url: "games/Get yoked/index.html" },
     { name: "Gunspin", url: "games/Gunspin/index.html" },
