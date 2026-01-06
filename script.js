@@ -62,7 +62,6 @@ const games = [
     { name: "Papas Pizzaria", url: "games/Papas pizzaria/index.html" },
     { name: "Five Nights at Freddys 3", url: "games/five nights at freddys 3/index.html" },
     { name: "Five Nights at Freddys 4", url: "games/five nights at freddys 4/index.html" },
-    { name: "Five Nights at Freddys Pizzaria Sim", url: "games/five nights at freddys pizzaria sim/index.html" },
 ]
 
 
