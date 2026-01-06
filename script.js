@@ -27,6 +27,7 @@ const games = [
     { name: "Escape Road", url: "games/Escape Road/index.html" },
     { name: "Five Nights At Freddys", url: "games/five nights at freddys/index.html" },
     { name: "Five Nights at Freddys 2", url: "games/five nights at freddys 2/index.html" },
+    { name: "Five Nights at Freddys 3", url: "games/five nights at freddys 3/index.html" },
     { name: "Slow roads", url: "games/Slow roads/index.html" },
     { name: "Hollow Knight", url: "games/Hollow knight/index.html" },
     { name: "Ultrakill", url: "games/ultrakill/index.html" },
@@ -60,7 +61,6 @@ const games = [
     { name: "Wordle", url: "games/Wordle/index.html" },
     { name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
     { name: "Papas Pizzaria", url: "games/Papas pizzaria/index.html" },
-    { name: "Five Nights at Freddys 3", url: "games/five nights at freddys 3/index.html" },
     { name: "Five Nights at Freddys 4", url: "games/five nights at freddys 4/index.html" },
     { name: "Five Nights at Freddys 4 halloween", url: "games/five nights at freddys 4 halloween/index.html" },
 ]
