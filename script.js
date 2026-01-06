@@ -60,6 +60,7 @@ const games = [
     { name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
     { name: "Papas Pizzaria", url: "games/Papas pizzaria/index.html" },
     { name: "Five Nights at Freddys 2", url: "games/five nights at freddys 2/index.html" },
+    { name: "Five Nights at Freddys 3", url: "games/five nights at freddys 3/index.html" },
 ]
 
 
