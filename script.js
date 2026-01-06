@@ -12,6 +12,7 @@ const games = [
     { name: "Celeste", url: "games/celeste/index.html" },
     { name: "Clash of Vikings", url: "games/clash of vikings/index.html" },
     { name: "Cookie Clicker", url: "games/Cookie Clicker/index.html" },
+    { name: "Count Masters stickman games", url: "games/Count Masters Stickman games/index.html" },
     { name: "Crossy Road", url: "games/Crossy Road/index.html" },
     { name: "Deadly descent", url: "games/deadly descent/index.html" },
     { name: "Deltarune", url: "games/Deltarune/index.html" },
