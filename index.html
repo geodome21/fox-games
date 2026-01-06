@@ -6,7 +6,8 @@
 <title>Geo Games</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark">
+<canvas id="bgCanvas" aria-hidden="true"></canvas>
 <header>
     <h1>Geo Games</h1>
     <input type="text" id="search" placeholder="Search games...">
@@ -17,6 +18,7 @@
     <ul id="gameList"></ul>
 </main>
 
+<script src="background.js" defer></script>
 <script src="script.js"></script>
 </body>
 </html>

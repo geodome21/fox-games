@@ -10,18 +10,28 @@ body {
 }
 
 :root { --bg:#ffffff; --text:#000000; }
-.dark { --bg:#121212; --text:#ffffff; }
+/* default dark theme (applied on load via <body class="dark">) */
+.dark { --bg:#0b0b0f; --text:#ffffff; }
+/* add explicit light class in case user toggles theme */
+.light { --bg:#ffffff; --text:#000000; }
 header {
     padding:20px;
     display:flex;
     gap:10px;
     align-items:center;
-    background: var(--bg);
+    /* translucent surface so background shows through */
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(6px);
     position:sticky;
     top:0;
-    border-bottom:1px solid #ccc;
-    z-index: 20;
+    border-bottom:1px solid rgba(0,0,0,0.08);
+    z-index: 30;
 }
+
+.dark header {
+    background: rgba(20,22,26,0.45);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+} 
 
 header button {
     padding: 8px 12px;
@@ -29,11 +39,14 @@ header button {
     border-radius: 6px;
     border: 1px solid rgba(0,0,0,0.08);
     background: transparent;
+    color: var(--text);
     cursor: pointer;
 }
 
 .dark header button {
     border-color: rgba(255,255,255,0.12);
+    /* ensure text is visible in dark mode */
+    color: var(--text);
 }
 
 #search {
@@ -49,24 +62,34 @@ header button {
     align-items: center; /* center the list container */
     gap: 8px;
     position: relative;
-    z-index: 10;
+    z-index: 15;
 }
 
+
 #gameList li {
-    /* stacked-list bubble styling */
+    /* stacked-list bubble styling (translucent to reveal background) */
     display: block;
     width: 100%;
     max-width: 640px; /* constrain the bubble width */
     padding: 10px 16px;
     margin: 0;
     border-radius: 8px;
-    background: rgba(0,0,0,0.05);
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(6px);
     cursor: pointer;
     transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
     outline: none;
     -webkit-tap-highlight-color: transparent;
     text-align: center;
+    box-shadow: 0 6px 18px rgba(8,10,20,0.06);
 }
+
+.dark #gameList li {
+    background: rgba(22,24,28,0.40);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+} 
+
 
 #gameList li:focus,
 #gameList li:focus-visible {
@@ -94,4 +117,27 @@ header button {
 #gameList li:focus-visible {
     outline: none;
     box-shadow: none;
+}
+
+/* Background canvas */
+#bgCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* behind content */
+    pointer-events: none; /* don't block clicks */
+    display: block;
+    opacity: 0.95;
+    transition: opacity 0.3s ease;
+}
+
+/* slightly reduce particles opacity on small screens */
+@media (max-width: 600px) {
+    #bgCanvas { opacity: 0.7; }
+}
+
+/* Respect user's reduced motion preference: disable background animation */
+@media (prefers-reduced-motion: reduce) {
+    #bgCanvas { display: none !important; }
 }

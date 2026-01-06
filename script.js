@@ -28,6 +28,8 @@ const games = [
     { name: "Five Nights At Freddys", url: "games/five nights at freddys/index.html" },
     { name: "Five Nights at Freddys 2", url: "games/five nights at freddys 2/index.html" },
     { name: "Five Nights at Freddys 3", url: "games/five nights at freddys 3/index.html" },
+    { name: "Five Nights at Freddys 4", url: "games/five nights at freddys 4/index.html" },
+    { name: "Five Nights at Freddys 4 halloween", url: "games/five nights at freddys 4 halloween/index.html" },
     { name: "Slow roads", url: "games/Slow roads/index.html" },
     { name: "Hollow Knight", url: "games/Hollow knight/index.html" },
     { name: "Ultrakill", url: "games/ultrakill/index.html" },
@@ -61,8 +63,6 @@ const games = [
     { name: "Wordle", url: "games/Wordle/index.html" },
     { name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
     { name: "Papas Pizzaria", url: "games/Papas pizzaria/index.html" },
-    { name: "Five Nights at Freddys 4", url: "games/five nights at freddys 4/index.html" },
-    { name: "Five Nights at Freddys 4 halloween", url: "games/five nights at freddys 4 halloween/index.html" },
     { name: "Five Nights at Freddys Ultimate Custom Night", url: "games/five nights at freddys ultimate custom night/index.html" },
     { name: "Five Nights at Freddys Sister Location", url: "games/five nights at freddys sister location/index.html" },
 ]
@@ -88,7 +88,34 @@ function renderGames(filter="") {
 
 search.oninput = () => renderGames(search.value);
 
-themeToggle.onclick = () =>
-    document.body.classList.toggle("dark");
+// Update theme button text based on current theme
+function updateThemeButton() {
+    const isDark = document.body.classList.contains("dark");
+    themeToggle.textContent = isDark ? "Light mode" : "Dark mode";
+    themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+}
+
+// Apply theme and persist
+function setTheme(theme) {
+    if (theme === "dark") document.body.classList.add("dark");
+    else document.body.classList.remove("dark");
+    try { localStorage.setItem("theme", theme); } catch (e) {}
+    updateThemeButton();
+}
+
+// Toggle theme and update
+themeToggle.onclick = () => {
+    const newTheme = document.body.classList.contains("dark") ? "light" : "dark";
+    setTheme(newTheme);
+};
+
+// initialize from storage if available
+try {
+    const stored = localStorage.getItem("theme");
+    if (stored) setTheme(stored);
+    else updateThemeButton();
+} catch (e) {
+    updateThemeButton();
+}
 
 renderGames();
