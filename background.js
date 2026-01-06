@@ -12,7 +12,7 @@
 
   // configuration: uniform particle size and connection / web settings
   const PARTICLE_SIZE = 3.4;       // px
-  const NEAREST_NEIGHBORS = 6;     // how many neighbors each particle connects to
+  const NEAREST_NEIGHBORS = 3;     // how many neighbors each particle connects to
   const MAX_CONN_RATIO = 0.6;      // fraction of max dimension used for maximum connection distance
 
   // Respect prefers-reduced-motion: hide/disable animation if user prefers reduced motion
@@ -52,6 +52,7 @@
   // particles
   let particles = [];
   let particleCount = 0;
+  let connections = []; // fixed connections between particles
   // Set a fixed particle count here (number). Set to null to use responsive count.
   const FIXED_PARTICLE_COUNT = 90;
   function calcCount() {
@@ -65,7 +66,17 @@
     const count = calcCount();
     particleCount = count;
     particles.length = 0;
+    connections.length = 0;
     for (let i = 0; i < count; i++) particles.push(new Particle());
+    // create fixed connections: each particle connects to the next NEAREST_NEIGHBORS particles
+    for (let i = 0; i < count; i++) {
+      for (let j = 1; j <= NEAREST_NEIGHBORS; j++) {
+        let target = (i + j) % count;
+        if (i < target) { // avoid duplicates
+          connections.push({from: i, to: target});
+        }
+      }
+    }
   }
 
   // Particles float freely — no cursor attraction or click bursts
@@ -135,41 +146,30 @@
 
     // connect & draw particles
     // draw lines first for subtlety
-    // create a web by connecting each particle to its nearest neighbors
+    // use fixed connections
     const maxConnDist = Math.max(w, h) * MAX_CONN_RATIO;
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      // compute distances to others
-      const dists = [];
-      for (let j = 0; j < particles.length; j++) {
-        if (j === i) continue;
-        const q = particles[j];
-        const dx = p.x - q.x, dy = p.y - q.y;
-        dists.push({ j, d2: dx*dx + dy*dy });
+    for (const conn of connections) {
+      const p = particles[conn.from];
+      const q = particles[conn.to];
+      const dx = p.x - q.x, dy = p.y - q.y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      const alpha = Math.max(0, (1 - d / maxConnDist)) * 0.18;
+      if (alpha <= 0) continue;
+      if (isDark()) {
+        const baseHue = 210;
+        const baseSat = 75;
+        const baseLight = 62;
+        ctx.strokeStyle = `hsla(${baseHue},${baseSat}%,${baseLight}%,${alpha})`;
+      } else {
+        // gray connections for light theme
+        const grayLight = 46;
+        ctx.strokeStyle = `hsla(0,0%,${grayLight}%,${alpha})`;
       }
-      dists.sort((a,b) => a.d2 - b.d2);
-      const neighbors = dists.slice(0, Math.min(NEAREST_NEIGHBORS, dists.length));
-      for (const nb of neighbors) {
-        const q = particles[nb.j];
-        const d = Math.sqrt(nb.d2);
-        const alpha = Math.max(0, (1 - d / maxConnDist)) * 0.18;
-        if (alpha <= 0) continue;
-        if (isDark()) {
-          const baseHue = 210;
-          const baseSat = 75;
-          const baseLight = 62;
-          ctx.strokeStyle = `hsla(${baseHue},${baseSat}%,${baseLight}%,${alpha})`;
-        } else {
-          // gray connections for light theme
-          const grayLight = 46;
-          ctx.strokeStyle = `hsla(0,0%,${grayLight}%,${alpha})`;
-        }
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(q.x, q.y);
-        ctx.stroke();
-      }
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(q.x, q.y);
+      ctx.stroke();
     }
 
     for (let p of particles) {
