@@ -42,7 +42,7 @@ const games = [
     { name: "Gunspin", url: "games/Gunspin/index.html" },
     { name: "Half Life", url: "games/Half Life/index.html" },
     { name: "Hollow Knight", url: "games/Hollow knight/index.html" },
-    { name: "Idle Breakout", url: "games/idle breakout/index.html" },
+    { name: "Idle Breakout", url: "games/Idle breakout/index.html" },
     { name: "Jailbreak Obby", url: "games/Jailbreak Obby/index.html" },
     { name: "Karlson", url: "games/Karlson/index.html" },
     { name: "Learn to fly", url: "games/learn to fly/index.html" },
