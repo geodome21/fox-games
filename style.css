@@ -141,3 +141,26 @@ header button {
 @media (prefers-reduced-motion: reduce) {
     #bgCanvas { display: none !important; }
 }
+
+/* Page banner shown below the header (placeholder) */
+.banner,
+#pageBanner {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 20px;
+    margin: 8px 0 0 0;
+    text-align: center;
+    border-radius: 8px;
+    color: var(--text);
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(4px);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 25;
+}
+
+.dark .banner,
+.dark #pageBanner {
+    background: rgba(255,255,255,0.04);
+}
