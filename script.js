@@ -55,7 +55,7 @@ const games = [
     { name: "Polytrack", url: "games/Polytrack/index.html" },
     { name: "R.E.P.O", url: "games/R.E.P.O/index.html" },
     { name: "Retro Bowl", url: "games/Retro Bowl/index.html" },
-    { name: "Slope Plus", url: "games/Slope Plus/index.html" },
+    { name: "Slope Plus", url: "games/slope Plus/index.html" },
     { name: "Slow roads", url: "games/Slow roads/index.html" },
     { name: "Small World Cup", url: "games/Small world cup/index.html" },
     { name: "Smash Karts", url: "games/smash karts/index.html" },
