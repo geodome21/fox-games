@@ -66,6 +66,7 @@ const games = [
     { name: "Stick Merge", url: "games/Stick Merge/index.html" },
     { name: "Subway Surfers", url: "games/Subway Surfers/index.html" },
     { name: "Superhot", url: "games/Super Hot/index.html" },
+    { name: "Super Mario 63", url: "games/Super mario 63/index.html" },
     { name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
     { name: "Super Star Car", url: "games/Super star car/index.html" },
     { name: "Tanuki sunset", url: "games/tanuki sunset/index.html" },
