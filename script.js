@@ -72,6 +72,7 @@ const games = [
     { name: "tattletail", url: "games/tattletail/index.html" },
     { name: "thats not my neighbor", url: "games/thats not my neighbor/index.html" },
     { name: "Time shooter", url: "games/Time shooter/index.html" },
+    { name: "Tom Clancys Rainbow Six", url: "games/Tom Clancys Rainbow Six/index.html" },
     { name: "Ultrakill", url: "games/ultrakill/index.html" },
     { name: "Wordle", url: "games/Wordle/index.html" },
 ]
