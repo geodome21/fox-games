@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T7 Clan - Events & Tournaments</title>
+    <!-- Preload important resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js" as="script">
+    <link rel="preload" href="./Banner.glb" as="fetch" crossorigin="anonymous">
+    
+    <style>
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #2c3e50;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Poppins', 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+        
+        #banner-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background-color: #1a1a1a; /* Fallback background */
+        }
+        
+        #banner-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 4rem 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            z-index: 10;
+            pointer-events: none;
+            text-align: center;
+        }
+        
+        .banner-overlay h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin: 0 0 1rem 0;
+            font-weight: 800;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
+        }
+        
+        .banner-overlay p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin: 0 auto;
+            max-width: 800px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+            font-weight: 300;
+        }
+        
+        .content-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .content-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .content-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .content-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .event-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+        }
+        
+        .event-image {
+            height: 200px;
+            background: linear-gradient(45deg, #2c3e50, #4ca1af);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .event-type {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .event-content {
+            padding: 1.5rem;
+        }
+        
+        .event-content h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+        
+        .event-date {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+            font-size: 0.9rem;
+        }
+        
+        .event-details {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .event-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        .event-stats span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .event-stats i {
+            margin-right: 5px;
+            color: var(--accent-color);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        .section-divider {
+            height: 100px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            margin: 3rem 0;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+        }
+        
+        /* Past Events Section */
+        .past-event {
+            opacity: 0.9;
+        }
+        
+        .past-event .event-image {
+            filter: grayscale(30%);
+        }
+        
+        .past-event .event-type {
+            background: #7f8c8d;
+        }
+        
+        /* Loading State */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: white;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Social Buttons Section */
+        .social-section {
+            background-color: var(--secondary-color);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .social-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+        
+        .social-button i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .discord-button {
+            background-color: #5865F2;
+            color: white;
+        }
+        
+        .youtube-button {
+            background-color: #FF0000;
+            color: white;
+        }
+        
+        .instagram-button {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            #banner-container {
+                height: 80vh;
+            }
+            
+            .banner-overlay {
+                padding: 2rem 1rem;
+            }
+            
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-button {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Loading overlay that will be removed when content is ready -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Loading T7 Clan Experience...</p>
+    </div>
+    
+    <div id="banner-container">
+        <canvas id="banner-canvas"></canvas>
+        <div class="banner-overlay">
+             <h1>T7 CLAN EVENTS</h1>
+             <p>Competitive tournaments and clan activities</p>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </div>
+    
+    <div class="content-section">
+        <p>T7 hereby officially recognizes and places significant value on the mastery of seven essential talents in Narrow One: Accuracy, Speed, Parkour, Bow Versatility, PvP IQ, Sportsmanship, and Adaptability. Our conviction is that a player attains the status of a "pro" by demonstrating proficiency in all seven talents.</p>
+        
+        <div class="section-divider"></div>
+        
+        <h2>Upcoming Events & Tournaments</h2>
+        <div class="events-grid" id="upcoming-events-container">
+            <!-- Upcoming event cards will be added dynamically -->
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <h2>Past Events & Results</h2>
+        <div class="events-grid" id="past-events-container">
+           
+        </div>
+    </div>
+
+    <div class="social-section">
+        <h2>Join Our Community</h2>
+        <p>Connect with us on social media to stay updated with all clan activities</p>
+        
+        <div class="social-buttons">
+            <a href="https://discord.gg/ZZVBDQnJvN" class="social-button discord-button" target="_blank">
+                <i class="fab fa-discord"></i> Join Our Discord
+            </a>
+            <a href="https://www.youtube.com/@Talent-7" class="social-button youtube-button" target="_blank">
+                <i class="fab fa-youtube"></i> Subscribe on YouTube
+            </a>
+            <a href="https://www.instagram.com/t7members/" class="social-button instagram-button" target="_blank">
+                <i class="fab fa-instagram"></i> Follow on Instagram
+            </a>
+        </div>
+    </div>
+
+    <!-- Three.js and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    
+    <script>
+        // First, load the GLB file before anything else
+        function loadGLBModel() {
+            return new Promise((resolve, reject) => {
+                const loader = new THREE.GLTFLoader();
+                loader.load(
+                    './Banner.glb',
+                    (gltf) => resolve(gltf),
+                    undefined,
+                    (error) => reject(error)
+                );
+            });
+        }
+
+        // Main Banner Animation with Enhanced Effects
+        async function initBanner() {
+            try {
+                // Show loading overlay
+                const loadingOverlay = document.getElementById('loading-overlay');
+                
+                // Load the GLB model first
+                const gltf = await loadGLBModel();
+                
+                // Scene setup
+                const container = document.getElementById('banner-container');
+                const canvas = document.getElementById('banner-canvas');
+                
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(
+                    45, // Wider field of view
+                    container.clientWidth / container.clientHeight, 
+                    0.1, 
+                    1000
+                );
+                
+                const renderer = new THREE.WebGLRenderer({
+                    canvas: canvas,
+                    antialias: true,
+                    alpha: true
+                });
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                renderer.outputEncoding = THREE.sRGBEncoding;
+                
+                // Add skybox/environment
+                function createSkybox() {
+                    const skyGeometry = new THREE.SphereGeometry(500, 32, 32);
+                    const skyMaterial = new THREE.MeshBasicMaterial({
+                        color: 0x87CEEB, // Light sky blue color
+                        side: THREE.BackSide,
+                        fog: true
+                    });
+                    const sky = new THREE.Mesh(skyGeometry, skyMaterial);
+                    scene.add(sky);
+                    
+                    // Lighter blue fog to match the sky
+                    scene.fog = new THREE.FogExp2(0x87CEEB, 0.001);
+                }
+                createSkybox();
+
+                // Enhanced lighting setup with blue sky adaptation
+                function setupLighting() {
+                    // Brighter ambient light to match daytime
+                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+                    scene.add(ambientLight);
+                    
+                    // Main sunlight - positioned higher for daytime feel
+                    const sunLight = new THREE.DirectionalLight(0xffffcc, 1.3); // Slightly yellow tint
+                    sunLight.position.set(1, 2, 1); // Higher position
+                    sunLight.castShadow = true;
+                    sunLight.shadow.mapSize.width = 1024;
+                    sunLight.shadow.mapSize.height = 1024;
+                    scene.add(sunLight);
+                    
+                    // Fill light - softer and cooler
+                    const fillLight = new THREE.DirectionalLight(0xccddff, 0.4);
+                    fillLight.position.set(-1, 0.5, -1);
+                    scene.add(fillLight);
+                    
+                    // Back light - reduced intensity
+                    const backLight = new THREE.DirectionalLight(0xffffff, 0.2);
+                    backLight.position.set(0, 0.5, -1);
+                    scene.add(backLight);
+                    
+                    // Hemisphere light - sky blue and light ground
+                    const hemisphereLight = new THREE.HemisphereLight(
+                        0x87CEEB, // Sky color
+                        0xdfebf2, // Light ground color (off-white with blue tint)
+                        0.8 // Increased intensity
+                    );
+                    scene.add(hemisphereLight);
+                }
+                setupLighting();
+                
+                // Add the loaded model to the scene
+                const bannerModel = gltf.scene;
+                scene.add(bannerModel);
+                
+                const box = new THREE.Box3().setFromObject(bannerModel);
+                const center = box.getCenter(new THREE.Vector3());
+                bannerModel.position.sub(center);
+                
+                const size = box.getSize(new THREE.Vector3()).length();
+                camera.position.z = size * 1.5;
+                camera.position.y = -size * 0.001;
+                
+                let mixer;
+                if (gltf.animations && gltf.animations.length) {
+                    mixer = new THREE.AnimationMixer(bannerModel);
+                    gltf.animations.forEach(clip => {
+                        mixer.clipAction(clip).play();
+                    });
+                }
+                
+                const controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                controls.dampingFactor = 0.05;
+                controls.minDistance = size * 0.2;
+                controls.maxDistance = size * 0.1;
+                controls.maxPolarAngle = Math.PI * 0.7;
+                controls.minPolarAngle = Math.PI * 0.3;
+                controls.autoRotate = true;
+                controls.autoRotateSpeed = 0.7;
+                controls.target.y = -0.3;
+                
+                const clock = new THREE.Clock();
+                function animate() {
+                    requestAnimationFrame(animate);
+                    const delta = clock.getDelta();
+                    controls.update();
+                    if (mixer) mixer.update(delta);
+                    renderer.render(scene, camera);
+                }
+                animate();
+                
+                function onWindowResize() {
+                    camera.aspect = container.clientWidth / container.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                }
+                window.addEventListener('resize', onWindowResize);
+                onWindowResize();
+                
+                // Add smooth scroll to content
+                document.querySelector('.scroll-indicator').addEventListener('click', () => {
+                    document.querySelector('.content-section').scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                });
+                
+                // Hide loading overlay when everything is ready
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 500);
+                
+            } catch (error) {
+                console.error('Error initializing banner:', error);
+                // Fallback content if loading fails
+                const loadingOverlay = document.getElementById('loading-overlay');
+                loadingOverlay.innerHTML = `
+                    <h2>Welcome to T7 Clan</h2>
+                    <p>Competitive tournaments and clan activities</p>
+                    <button onclick="location.reload()">Retry Loading</button>
+                `;
+            }
+        }
+        
+        // Events Section
+        function initEvents() {
+            const upcomingEvents = [
+               
+                {
+                    title: "W event (weekly event) ",
+                    type: "weekly event",
+                    date: "",
+                    details: "Highest number of flag captures in a day",
+                    participants: "*",
+                    prize: "winner",
+                    icon: "fa-trophy"
+                },
+                  {
+                    title: "W event (weekly event) ",
+                    type: "weekly event",
+                    date: "",
+                    details: "Speed Run",
+                    participants: "*",
+                    prize: "winner",
+                    icon: "fa-trophy"
+                },
+                  {
+                    title: "W event (weekly event) ",
+                    type: "weekly event",
+                    date: "",
+                    details: "Treasure Find",
+                    participants: "*",
+                    prize: "winner",
+                    icon: "fa-trophy"
+                }
+        
+            ];
+            
+            const pastEvents = [
+                 {
+                    title: " RESCUE SANTA",
+                    type: "Adventure Event",
+                    date: "",
+                    details: "Santa has been kidnapped. According to an old legend, if Santa is not rescued before midnight, Christmas will be lost. Every player has a different role and objective.",
+                    participants: "*",
+                    prize: "winner",
+                    icon: "fa-dungeon"
+                },
+                {
+                    title: "Seasonal Championship 2023",
+                    type: "Tournament",
+                    date: "December 28, 2023",
+                    details: "Seasonal championship with 16 Clan members. 1v1 Tournament with 5K N1 Coins Won Diglet Sencond Place T7 coder Won 3.5K N1 coins and third place T7| randy won 2k N1 Coin",
+                    participants: "16",
+                    prize: "Victory",
+                    icon: "fa-trophy"
+                },
+                {
+                    title: "Clan War: T7 vs Fossile Clan",
+                    type: "Clan War",
+                    date: "December, 2023",
+                    details: "Epic 3v3 showdown that went to sudden death overtime. Talent 7 won.",
+                    participants: "6",
+                    prize: "Victory",
+                    icon: "fa-swords" 
+                },
+                  {
+                    title: "W event(weekend event) ",
+                    type: "weekly event",
+                    date: "June, 2025",
+                    details: "The record for the most flag captures in a day is held by Chronyx with 246, followed by Rabbituzi in second place with 238.",
+                    participants: "16",
+                    prize: "winner",
+                    icon: "fa-trophy"
+                },
+                {
+                    title: "ARCHERS OF THE REALM",
+                    type: "Strategic Event",
+                    date: "August, 2024",
+                    details: "King vs King bow battle with 4 defenders protecting their ruler. Attackers must eliminate defenders before taking down the king. Intense 10-minute matches.",
+                    participants: "10",
+                    prize: "Victory",
+                    icon: "fa-crown" 
+                },
+                {
+                    title: "Seasonal Championship 2025",
+                    type: "Tournament",
+                    date: "June, 2025",
+                    details: "Annual tournament with 16 competing players. Single elimination bracket. Wurenjun Won Tournament. T7| Hong Second Place",
+                    participants: "16",
+                    prize: "Championship",
+                    icon: "fa-trophy"
+                },
+                {
+                    title: "Clan War: Talent7 vs 2 shots Clan",
+                    type: "Clan War",
+                    date: "December, 2023",
+                    details: "Epic 3v3 showdown that went to sudden death overtime. 2 shots won.",
+                    participants: "12",
+                    prize: "Victory",
+                    icon: "fa-swords" 
+                },
+                {
+                    title: "ARCHERY OLYMPICS",
+                    type: "Public Event",
+                    date: "October 15, 2024",
+                    details: "6 Epic Rounds With 6 Bows.Lichtel Won The ARCHERY OLYMPICS",
+                    participants: "12",
+                    prize: "Victory",
+                    icon: "fa-bullseye" 
+                },
+                {
+                    title: "Seasonal Championship 2024",
+                    type: "Tournament",
+                    date: "september, 2024",
+                    details: "Single elimination 1v1 tournament. T7|Kitten Won Tournament And T7|Lichtel are Runner-UP",
+                    participants: "16",
+                    prize: "Champion",
+                    icon: "fa-trophy"
+                },
+                {
+                    title: "The Lost City of Eldarath",
+                    type: "Adventure Event",
+                    date: "January, 2024",
+                    details: "1 vs. monster event! Participants battled through castles, forts, and fields across 3 waves. The first 3 kills advanced players to the next level.",
+                    participants: "10",
+                    prize: "Champion",
+                    icon: "fa-dungeon" 
+                }
+            ];
+            
+            function createEventCard(event, isPast = false) {
+                const card = document.createElement('div');
+                card.className = `event-card ${isPast ? 'past-event' : ''}`;
+                
+                // Generate a random gradient for each card
+                const colors = [
+                    'linear-gradient(45deg, #2c3e50, #4ca1af)',
+                    'linear-gradient(45deg, #e74c3c, #e67e22)',
+                    'linear-gradient(45deg, #3498db, #2ecc71)',
+                    'linear-gradient(45deg, #9b59b6, #e74c3c)',
+                    'linear-gradient(45deg, #1abc9c, #3498db)',
+                    'linear-gradient(45deg, #e67e22, #f1c40f)',
+                    'linear-gradient(45deg, #2c3e50, #e74c3c)'
+                ];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                card.innerHTML = `
+                    <div class="event-image" style="background: ${randomColor}">
+                        <i class="fas ${event.icon}"></i>
+                        <span class="event-type">${event.type}</span>
+                    </div>
+                    <div class="event-content">
+                        <h3>${event.title}</h3>
+                        <span class="event-date">${event.date}</span>
+                        <p class="event-details">${event.details}</p>
+                        <div class="event-stats">
+                            <span><i class="fas fa-user-friends"></i> ${event.participants} participants</span>
+                            <span><i class="fas fa-award"></i> ${event.prize}</span>
+                        </div>
+                    </div>
+                `;
+                
+                return card;
+            }
+            
+            // Add upcoming events
+            const upcomingContainer = document.getElementById('upcoming-events-container');
+            upcomingEvents.forEach(event => {
+                upcomingContainer.appendChild(createEventCard(event));
+            });
+            
+            // Add past events
+            const pastContainer = document.getElementById('past-events-container');
+            pastEvents.forEach(event => {
+                pastContainer.appendChild(createEventCard(event, true));
+            });
+        }
+        
+        // Initialize everything when the page loads
+        window.addEventListener('DOMContentLoaded', async () => {
+            await initBanner(); // Wait for the banner to load first
+            initEvents(); // Then initialize the events
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

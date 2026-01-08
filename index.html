@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Geo Games</title>
 <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="banner/banner.css">
 </head>
 <body class="dark">
 <canvas id="bgCanvas" aria-hidden="true"></canvas>
@@ -13,12 +14,28 @@
     <input type="text" id="search" placeholder="Search games...">
     <button id="themeToggle">nun to see here</button>
 </header>
-<div id="pageBanner" class="banner" role="region" aria-label="Promotional banner">fuck you fin</div>
+
+
+<!-- Side banners: left and right (two items total). Replace images in banner/images/ -->
+<aside class="side-banner side-banner-left" aria-label="Left promotional banner">
+    <div class="side-banner-inner" id="sideBannerLeftInner">
+        <a href="#" class="banner-item" target="_blank" rel="noopener"><img src="banner/images/left-placeholder.svg" alt="Left banner"></a>
+    </div>
+    <button class="side-banner-close" data-target="left" aria-label="Close left banner">×</button>
+</aside>
+
+<aside class="side-banner side-banner-right" aria-label="Right promotional banner">
+    <div class="side-banner-inner" id="sideBannerRightInner">
+        <a href="#" class="banner-item" target="_blank" rel="noopener"><img src="banner/images/right-placeholder.svg" alt="Right banner"></a>
+    </div>
+    <button class="side-banner-close" data-target="right" aria-label="Close right banner">×</button>
+</aside>
 
 <main>
     <ul id="gameList"></ul>
 </main>
 
+<script src="banner/banner.js" defer></script>
 <script src="background.js" defer></script>
 <script src="script.js"></script>
 </body>

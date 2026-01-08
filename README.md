@@ -4,6 +4,4 @@ this is a basic game website with multiple games its perfect as a template and e
 
 list of things to do
 
-add background animation
-
 make it so when you press the fox game text it reloads the site taking it back to the main page
