@@ -15,7 +15,6 @@ const games = [
     { name: "Cookie Clicker", url: "games/Cookie Clicker/index.html" },
     { name: "Count Masters stickman games", url: "games/Count Masters Stickman games/index.html" },
     { name: "Crossy Road", url: "games/Crossy Road/index.html" },
-    { name: "Cuphead", url: "games/Cuphead/index.html" },
     { name: "Deadly descent", url: "games/deadly descent/index.html" },
     { name: "Deltarune", url: "games/Deltarune/index.html" },
     { name: "Doblox", url: "games/Doblox/index.html" },
