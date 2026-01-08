@@ -52,6 +52,7 @@ const games = [
     { name: "Minesweeper", url: "games/Minesweeper/index.html" },
     { name: "nba jam", url: "games/nba jam/index.html" },
     { name: "Papas Pizzaria", url: "games/Papas pizzaria/index.html" },
+    { name: "Plants VS zombies 2 gardenless", url: "games/Plants VS zombies 2 gardenless/index.html" },
     { name: "Polytrack", url: "games/Polytrack/index.html" },
     { name: "R.E.P.O", url: "games/R.E.P.O/index.html" },
     { name: "Retro Bowl", url: "games/Retro Bowl/index.html" },
