@@ -75,6 +75,7 @@ const games = [
     { name: "Tom Clancys Rainbow Six", url: "games/Tom Clancys Rainbow Six/index.html" },
     { name: "Ultrakill", url: "games/ultrakill/index.html" },
     { name: "Wordle", url: "games/Wordle/index.html" },
+    { name: "You VS 100 Skibidi", url: "games/You VS 100 Skibidi/index.html" },
 ]
 
 
