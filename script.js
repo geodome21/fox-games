@@ -65,6 +65,7 @@ const games = [
     { name: "Snow Road", url: "games/Snow road/index.html" },
     { name: "Steal A Brainrot", url: "games/steal a brainrot/index.html" },
     { name: "Stick Merge", url: "games/Stick Merge/index.html" },
+    { name: "Stickman Hook", url: "games/Stickman Hook/index.html" },
     { name: "Subway Surfers", url: "games/Subway Surfers/index.html" },
     { name: "Superhot", url: "games/Super Hot/index.html" },
     { name: "Super Mario 63", url: "games/Super mario 63/index.html" },
