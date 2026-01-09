@@ -27,6 +27,7 @@ const games = [
     { name: "Duck life 4", url: "games/Duck Life 4/index.html" },
     { name: "Elastic Man", url: "games/Elastic man/index.html" },
     { name: "Escape Road", url: "games/Escape Road/index.html" },
+    { name: "Escape Road 2", url: "games/Escape Road 2/index.html" },
     { name: "Five Nights At Freddys", url: "games/five nights at freddys/index.html" },
     { name: "Five Nights at Freddys 2", url: "games/five nights at freddys 2/index.html" },
     { name: "Five Nights at Freddys 3", url: "games/five nights at freddys 3/index.html" },
