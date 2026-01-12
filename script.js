@@ -43,6 +43,7 @@ const games = [
     { name: "Get Yoked", url: "games/Get yoked/index.html" },
     { name: "Gunspin", url: "games/Gunspin/index.html" },
     { name: "Half Life", url: "games/Half Life/index.html" },
+    { name: "Happy Wheels", url: "games/Happy Wheels/index.html" },
     { name: "Hollow Knight", url: "games/Hollow knight/index.html" },
     { name: "Idle Breakout", url: "games/Idle breakout/index.html" },
     { name: "Jailbreak Obby", url: "games/Jailbreak Obby/index.html" },
