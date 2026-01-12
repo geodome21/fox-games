@@ -1,4 +1,5 @@
 const games = [
+    { name: "1 on 1 tennis", url: "games/1 on 1 tennis/index.html" },
     { name: "1v1.lol", url: "games/1v1.lol/index.html" },
     { name: "3D geometry dash", url: "games/3D geometry dash/index.html" },
     { name: "Age of War", url: "games/Age of war/index.html" },
