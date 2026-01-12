@@ -53,6 +53,7 @@ const games = [
     { name: "Minecraft 1.8.8", url: "games/Minecraft 1.8.8/index.html" },
     { name: "Minesweeper", url: "games/Minesweeper/index.html" },
     { name: "nba jam", url: "games/nba jam/index.html" },
+    { name: "Papas Bakeria", url: "games/papas bakeria/index.html" },
     { name: "Papas Pizzaria", url: "games/Papas pizzaria/index.html" },
     { name: "Plants VS zombies 2 gardenless", url: "games/Plants VS zombies 2 gardenless/index.html" },
     { name: "Polytrack", url: "games/Polytrack/index.html" },
