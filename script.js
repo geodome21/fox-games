@@ -16,6 +16,7 @@ const games = [
     { name: "Cookie Clicker", url: "games/Cookie Clicker/index.html" },
     { name: "Count Master Stickman games", url: "games/Count Master Stickman games/index.html" },
     { name: "Crazy Cattle 3D", url: "games/Crazy Cattle 3D/index.html" },
+    { name: "Crazy Chicken 3D", url: "games/Crazy Chicken 3D/index.html" },
     { name: "Crossy Road", url: "games/Crossy Road/index.html" },
     { name: "Deadly descent", url: "games/deadly descent/index.html" },
     { name: "Deltarune", url: "games/Deltarune/index.html" },
