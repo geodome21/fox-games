@@ -6,4 +6,3 @@ list of things to do
 
 make it so when you press the fox game text it reloads the site taking it back to the main page
 
-add back geometry dash
