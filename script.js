@@ -43,6 +43,7 @@ const games = [
     { name: "Friday Night Funkin Dustin", url: "games/Friday Night Funkin dustin/index.html" },
     { name: "Geometry dash", url: "games/Geometry Dash/index.html" },
     { name: "Get Yoked", url: "games/Get yoked/index.html" },
+    { name: "Gun Runner", url: "games/Gun Runner/index.html" },
     { name: "Gunspin", url: "games/Gunspin/index.html" },
     { name: "Half Life", url: "games/Half Life/index.html" },
     { name: "Happy Wheels", url: "games/Happy Wheels/index.html" },
