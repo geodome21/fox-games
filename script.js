@@ -55,7 +55,6 @@ const games = [
     { name: "Learn to fly 3", url: "games/learn to fly 3/index.html" },
     { name: "level devil", url: "games/level devil/index.html" },
     { name: "Minecraft 1.8.8", url: "games/Minecraft 1.8.8/index.html" },
-    { name: "Minecraft 1.20.4", url: "games/Minecraft 1.20.4/index.html" },
     { name: "Minesweeper", url: "games/Minesweeper/index.html" },
     { name: "nba jam", url: "games/nba jam/index.html" },
     { name: "Papas Bakeria", url: "games/papas bakeria/index.html" },
