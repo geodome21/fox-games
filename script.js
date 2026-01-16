@@ -69,6 +69,7 @@ const games = [
     { name: "Smash Karts", url: "games/smash karts/index.html" },
     { name: "Snow Rider 3D", url: "games/Snow rider 3D/index.html" },
     { name: "Snow Road", url: "games/Snow road/index.html" },
+    { name: "Spacebar Clicker", url: "games/Spacebar Clicker/index.html" },
     { name: "Steal A Brainrot", url: "games/steal a brainrot/index.html" },
     { name: "Stick Merge", url: "games/Stick Merge/index.html" },
     { name: "Stickman Hook", url: "games/Stickman Hook/index.html" },
