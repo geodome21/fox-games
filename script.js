@@ -131,7 +131,7 @@ themeToggle.onclick = () => {
     setTheme(newTheme);
 };
 
-// initialize from storage if available
+
 try {
     const stored = localStorage.getItem("theme");
     if (stored) setTheme(stored);
