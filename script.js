@@ -90,7 +90,7 @@ const games = [
 ]
 
 
-// (No background animation) Keep script focused on game list and theme toggle
+
 
 const list = document.getElementById("gameList");
 const search = document.getElementById("search");
