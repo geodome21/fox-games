@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Geo games</title>
+    <title>Flash Game</title>
 
     <!-- Ruffle Flash Emulator -->
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
@@ -13,15 +13,18 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: black;
+            overflow: hidden;
         }
 
         #player {
-            width: 800px;
-            height: 600px;
+            width: 100%;
+            height: 100%;
+        }
+
+        ruffle-player {
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -29,12 +32,16 @@
     <div id="player"></div>
 
     <script>
-        window.RufflePlayer = window.RufflePlayer || {};
         window.addEventListener("load", () => {
             const ruffle = window.RufflePlayer.newest();
             const player = ruffle.createPlayer();
+
+            player.style.width = "100%";
+            player.style.height = "100%";
+
             document.getElementById("player").appendChild(player);
-            player.load("games/Douchebag life/Douchebag_Life.swf"); // change this if your file name is different
+
+            player.load("games/Douchebag life/craplife.swf");
         });
     </script>
 </body>
