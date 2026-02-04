@@ -9,7 +9,7 @@ const games = [
     { name: "Bitlife", url: "games/bitlife/index.html" },
     { name: "Bridge Race", url: "games/Bridge Race/index.html" },
     { name: "Buckshot roulette", url: "games/buckshot roulette/index.html" },
-    { name: "Burgentruck201x", url: "games/burgentruck201x/index.html" },
+    { name: "Burgentruck201x", url: "games/burgen truck 201x/index.html" },
     { name: "Burnout extreme drift 2", url: "games/Burnout extreme drift 2/index.html" },
     { name: "Candy Crush", url: "games/Candy Crush/index.html" },
     { name: "Celeste", url: "games/celeste/index.html" },
