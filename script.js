@@ -94,7 +94,6 @@ const games = [
 
 const list = document.getElementById("gameList");
 const search = document.getElementById("search");
-const themeToggle = document.getElementById("themeToggle");
 
 function renderGames(filter="") {
     list.innerHTML = "";
@@ -109,35 +108,5 @@ function renderGames(filter="") {
 }
 
 search.oninput = () => renderGames(search.value);
-
-// Update theme button text based on current theme
-function updateThemeButton() {
-    const isDark = document.body.classList.contains("dark");
-    themeToggle.textContent = isDark ? "Light mode" : "Dark mode";
-    themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-}
-
-// Apply theme and persist
-function setTheme(theme) {
-    if (theme === "dark") document.body.classList.add("dark");
-    else document.body.classList.remove("dark");
-    try { localStorage.setItem("theme", theme); } catch (e) {}
-    updateThemeButton();
-}
-
-// Toggle theme and update
-themeToggle.onclick = () => {
-    const newTheme = document.body.classList.contains("dark") ? "light" : "dark";
-    setTheme(newTheme);
-};
-
-
-try {
-    const stored = localStorage.getItem("theme");
-    if (stored) setTheme(stored);
-    else updateThemeButton();
-} catch (e) {
-    updateThemeButton();
-}
 
 renderGames();
