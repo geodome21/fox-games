@@ -72,6 +72,7 @@ const games = [
     { name: "Parking Fury", url: "games/Parking Fury/index.html" },
     { name: "Peggle", url: "games/Peggle/index.html" },
     { name: "Plants VS zombies 2 gardenless", url: "games/Plants VS zombies 2 gardenless/index.html" },
+    { name: "Pokemon red", url: "games/pokemon red/index.html" },
     { name: "Polytrack", url: "games/Polytrack/index.html" },
     { name: "R.E.P.O", url: "games/R.E.P.O/index.html" },
     { name: "Retro Bowl", url: "games/Retro Bowl/index.html" },
