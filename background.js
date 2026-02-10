@@ -87,17 +87,16 @@
   function Particle(x = rand(0, w), y = rand(0, h), vx = rand(-0.4,0.4), vy = rand(-0.4,0.4)) {
     this.x = x; this.y = y; this.vx = vx; this.vy = vy; this.r = PARTICLE_SIZE;
     // particles are persistent (no life/age) for a stable web
-    // Blue in dark mode, grayscale (sat=0) in light mode
-    // hearts use red hues in both themes for a warm effect
     if (isDark()) {
-      // red/orange range
-      this.hue = Math.random() < 0.5 ? rand(350, 360) : rand(0, 12);
-      this.sat = rand(60, 95);
-      this.light = rand(40, 70);
+      // blue hues for dark mode
+      this.hue = rand(200, 250);
+      this.sat = rand(45, 75);
+      this.light = rand(45, 70);
     } else {
-      this.hue = Math.random() < 0.5 ? rand(350, 360) : rand(0, 12);
-      this.sat = rand(60, 95);
-      this.light = rand(40, 70);
+      // grayscale for light mode
+      this.hue = 0;
+      this.sat = 0;
+      this.light = rand(60, 75);
     }
     // alpha varies for depth
     this.alpha = rand(0.18,0.95);
@@ -158,7 +157,7 @@
       const d = Math.sqrt(dx*dx + dy*dy);
       const alpha = Math.max(0, (1 - d / maxConnDist)) * 0.12;
       if (alpha <= 0) continue;
-      // use a red-tinted line based on particle hues (average)
+      // use a tinted line based on particle hues (average)
       const hue = Math.round(((p.hue || 0) + (q.hue || 0)) / 2);
       const sat = Math.round(((p.sat || 70) + (q.sat || 70)) / 2);
       const light = Math.round(Math.min(70, ((p.light || 50) + (q.light || 50)) / 2 + 4));
@@ -170,40 +169,16 @@
       ctx.stroke();
     }
 
-    function drawHeart(cx, cy, size, color) {
-      // size is radius-like; scale factor
-      const s = Math.max(1, size);
-      try {
-        ctx.save();
-        ctx.translate(cx, cy);
-        ctx.scale(s/12, s/12); // base heart designed at ~12 units
-        ctx.beginPath();
-        // heart path (centered at 0,0)
-        ctx.moveTo(0, -6);
-        ctx.bezierCurveTo(6, -14, 24, -6, 0, 18);
-        ctx.bezierCurveTo(-24, -6, -6, -14, 0, -6);
-        ctx.closePath();
-        ctx.fillStyle = color;
-        ctx.fill();
-        ctx.restore();
-      } catch (err) {
-        // fallback: draw a simple circle so something visible appears
-        ctx.save();
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(cx, cy, Math.max(1, s/2), 0, Math.PI*2);
-        ctx.fill();
-        ctx.restore();
-      }
-    }
-
+    // draw particles as circles
     for (let p of particles) {
       const hue = Math.round(p.hue);
       const sat = Math.round(p.sat);
       const light = Math.round(p.light);
       const alpha = Math.max(0.06, p.alpha);
-      const color = `hsla(${hue},${sat}%,${light}%,${alpha})`;
-      drawHeart(p.x, p.y, Math.max(2.0, p.r * 2.2), color);
+      ctx.fillStyle = `hsla(${hue},${sat}%,${light}%,${alpha})`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
     }
   }
 
@@ -232,10 +207,17 @@
   const bodyObserver = new MutationObserver(() => {
     // recolor existing particles with new hues / gray values
     for (let p of particles) {
-      // recolor to red/orange hues
-      p.hue = Math.random() < 0.5 ? rand(350, 360) : rand(0, 12);
-      p.sat = rand(60, 95);
-      p.light = rand(40, 70);
+      if (isDark()) {
+        // blue hues for dark mode
+        p.hue = rand(200, 250);
+        p.sat = rand(45, 75);
+        p.light = rand(45, 70);
+      } else {
+        // grayscale for light mode
+        p.hue = 0;
+        p.sat = 0;
+        p.light = rand(60, 75);
+      }
     }
   });
   bodyObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
