@@ -103,7 +103,7 @@ const games = [
 // Movies array - add movies following the same format as games
 // Example: { name: "Movie Title", url: "movies/Movie Name/index.html" }
 const movies = [
-    { name: "Shrek", url: "movies/Shrek/index.html" },
+    { name: "Shrek", url: "https://drive.google.com/file/d/181FkiZwd4SyWsqpTrv8HZYTc-To9vpBG/view" },
 ]
 
 document.addEventListener('DOMContentLoaded', () => {
