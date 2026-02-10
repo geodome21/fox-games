@@ -5,6 +5,7 @@
 // - mouse interaction: move attracts particles, click bursts
 
 (() => {
+  console.log('[background] init');
   const canvas = document.getElementById('bgCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -87,14 +88,16 @@
     this.x = x; this.y = y; this.vx = vx; this.vy = vy; this.r = PARTICLE_SIZE;
     // particles are persistent (no life/age) for a stable web
     // Blue in dark mode, grayscale (sat=0) in light mode
+    // hearts use red hues in both themes for a warm effect
     if (isDark()) {
-      this.hue = rand(200, 225);            // blue range
-      this.sat = rand(60, 90);              // saturation
-      this.light = rand(40, 65);
+      // red/orange range
+      this.hue = Math.random() < 0.5 ? rand(350, 360) : rand(0, 12);
+      this.sat = rand(60, 95);
+      this.light = rand(40, 70);
     } else {
-      this.hue = 0;                         // hue doesn't matter with sat=0
-      this.sat = 0;                         // force grayscale in light theme
-      this.light = rand(30, 60);           // gray brightness
+      this.hue = Math.random() < 0.5 ? rand(350, 360) : rand(0, 12);
+      this.sat = rand(60, 95);
+      this.light = rand(40, 70);
     }
     // alpha varies for depth
     this.alpha = rand(0.18,0.95);
@@ -153,18 +156,13 @@
       const q = particles[conn.to];
       const dx = p.x - q.x, dy = p.y - q.y;
       const d = Math.sqrt(dx*dx + dy*dy);
-      const alpha = Math.max(0, (1 - d / maxConnDist)) * 0.18;
+      const alpha = Math.max(0, (1 - d / maxConnDist)) * 0.12;
       if (alpha <= 0) continue;
-      if (isDark()) {
-        const baseHue = 210;
-        const baseSat = 75;
-        const baseLight = 62;
-        ctx.strokeStyle = `hsla(${baseHue},${baseSat}%,${baseLight}%,${alpha})`;
-      } else {
-        // gray connections for light theme
-        const grayLight = 46;
-        ctx.strokeStyle = `hsla(0,0%,${grayLight}%,${alpha})`;
-      }
+      // use a red-tinted line based on particle hues (average)
+      const hue = Math.round(((p.hue || 0) + (q.hue || 0)) / 2);
+      const sat = Math.round(((p.sat || 70) + (q.sat || 70)) / 2);
+      const light = Math.round(Math.min(70, ((p.light || 50) + (q.light || 50)) / 2 + 4));
+      ctx.strokeStyle = `hsla(${hue},${sat}%,${light}%,${alpha})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(p.x, p.y);
@@ -172,21 +170,40 @@
       ctx.stroke();
     }
 
+    function drawHeart(cx, cy, size, color) {
+      // size is radius-like; scale factor
+      const s = Math.max(1, size);
+      try {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.scale(s/12, s/12); // base heart designed at ~12 units
+        ctx.beginPath();
+        // heart path (centered at 0,0)
+        ctx.moveTo(0, -6);
+        ctx.bezierCurveTo(6, -14, 24, -6, 0, 18);
+        ctx.bezierCurveTo(-24, -6, -6, -14, 0, -6);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.restore();
+      } catch (err) {
+        // fallback: draw a simple circle so something visible appears
+        ctx.save();
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(cx, cy, Math.max(1, s/2), 0, Math.PI*2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
     for (let p of particles) {
-      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, Math.max(6, p.r*6));
       const hue = Math.round(p.hue);
       const sat = Math.round(p.sat);
       const light = Math.round(p.light);
-      const startAlpha = Math.min(1, p.alpha);
-      const midAlpha = Math.min(0.28, p.alpha * 0.22);
-      g.addColorStop(0, `hsla(${hue},${sat}%,${light}%,${startAlpha})`);
-      g.addColorStop(0.7, `hsla(${hue},${sat}%,${Math.max(14, light-20)}%,${midAlpha})`);
-      g.addColorStop(1, `hsla(${hue},${sat}%,${Math.max(6, light-30)}%,0)`);
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      // uniform size for all particles
-      ctx.arc(p.x, p.y, Math.max(1.0, p.r), 0, Math.PI*2);
-      ctx.fill();
+      const alpha = Math.max(0.06, p.alpha);
+      const color = `hsla(${hue},${sat}%,${light}%,${alpha})`;
+      drawHeart(p.x, p.y, Math.max(2.0, p.r * 2.2), color);
     }
   }
 
@@ -215,15 +232,10 @@
   const bodyObserver = new MutationObserver(() => {
     // recolor existing particles with new hues / gray values
     for (let p of particles) {
-      if (isDark()) {
-        p.hue = rand(200,225);
-        p.sat = rand(60,90);
-        p.light = rand(40,65);
-      } else {
-        p.hue = 0;
-        p.sat = 0;
-        p.light = rand(30,60);
-      }
+      // recolor to red/orange hues
+      p.hue = Math.random() < 0.5 ? rand(350, 360) : rand(0, 12);
+      p.sat = rand(60, 95);
+      p.light = rand(40, 70);
     }
   });
   bodyObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
