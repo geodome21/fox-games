@@ -104,7 +104,6 @@ const games = [
 // Example: { name: "Movie Title", url: "movies/Movie Name/index.html" }
 const movies = [
     { name: "Shrek", url: "movies/Shrek/index.html" },
-    { name: "Example Movie 2", url: "movies/Example Movie 2/index.html" },
 ]
 
 document.addEventListener('DOMContentLoaded', () => {
