@@ -36,28 +36,76 @@ header button {
     cursor: pointer;
 }
 
+#sectionNav {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+#sectionNav button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#sectionNav button:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+#sectionNav button.section-active {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.3);
+}
+
 #search {
     flex:1;
     padding:10px;
     font-size:16px;
 }
-#gameList {
+#gameList, #movieList, #itemList {
     list-style: none;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* center the list container */
+    align-items: center;
     gap: 8px;
     position: relative;
     z-index: 15;
 }
 
+/* list enter/exit animations */
+@keyframes listFadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-10px); }
+}
 
-#gameList li {
-    /* stacked-list bubble styling (translucent to reveal background) */
+@keyframes listFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.list-section.anim-out {
+    animation: listFadeOut 200ms cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+.list-section.anim-in {
+    animation: listFadeIn 260ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+.list-section.hidden {
+    display: none;
+}
+
+
+.list-section li {
     display: block;
     width: 100%;
-    max-width: 640px; /* constrain the bubble width */
+    max-width: 640px;
     padding: 10px 16px;
     margin: 0;
     border-radius: 8px;
@@ -69,27 +117,30 @@ header button {
     -webkit-tap-highlight-color: transparent;
     text-align: center;
     box-shadow: 0 6px 18px rgba(0,0,0,0.45);
-} 
+}
 
 
-#gameList li:focus,
-#gameList li:focus-visible {
+#itemList li:focus,
+.list-section li:focus,
+.list-section li:focus-visible {
     outline: none;
     box-shadow: none;
 }
 
-.dark #gameList li {
+.dark .list-section li {
     background: rgba(255,255,255,0.08);
 }
 
 /* keep interactions but visually plain */
-#gameList li:hover {
+#itemList li:hover,
+.list-section li:hover {
     transform: translateY(-3px);
     background: rgba(0,0,0,0.10);
     box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 
-#gameList li:active {
+.itemList li:active,
+.list-section li:active {
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.10);
 }
@@ -121,6 +172,10 @@ header button {
 /* Respect user's reduced motion preference: disable background animation */
 @media (prefers-reduced-motion: reduce) {
     #bgCanvas { display: none !important; }
+    .list-section.anim-out,
+    .list-section.anim-in {
+        animation: none !important;
+    }
 }
 
 /* Page banner shown below the header (placeholder) */

@@ -100,24 +100,87 @@ const games = [
     { name: "You VS 100 Skibidi", url: "games/You VS 100 Skibidi/index.html" },
 ]
 
+// Movies array - add movies following the same format as games
+// Example: { name: "Movie Title", url: "movies/Movie Name/index.html" }
+const movies = [
+    { name: "Shrek", url: "movies/Shrek/index.html" },
+    { name: "Example Movie 2", url: "movies/Example Movie 2/index.html" },
+]
 
+document.addEventListener('DOMContentLoaded', () => {
+    const itemList = document.getElementById("itemList");
+    const search = document.getElementById("search");
+    const gamesBtn = document.getElementById("gamesBtn");
+    const moviesBtn = document.getElementById("moviesBtn");
 
+    let currentSection = "games";
 
-const list = document.getElementById("gameList");
-const search = document.getElementById("search");
+    let animating = false;
 
-function renderGames(filter="") {
-    list.innerHTML = "";
-    games
-        .filter(g => g.name.toLowerCase().includes(filter.toLowerCase()))
-        .forEach(game => {
-            const li = document.createElement("li");
-            li.textContent = game.name;
-            li.onclick = () => window.location = game.url;
-            list.appendChild(li);
-        });
-}
+    function switchSection(section) {
+        if (section === currentSection || animating) return;
+        animating = true;
 
-search.oninput = () => renderGames(search.value);
+        // prepare out listener then start out animation
+        const onOut = (e) => {
+            if (e && e.target !== itemList) return;
+            itemList.removeEventListener('animationend', onOut);
+            itemList.classList.remove('anim-out');
 
-renderGames();
+            // update section and active button state
+            currentSection = section;
+            if (section === "games") {
+                gamesBtn.classList.add("section-active");
+                moviesBtn.classList.remove("section-active");
+            } else {
+                gamesBtn.classList.remove("section-active");
+                moviesBtn.classList.add("section-active");
+            }
+
+            renderItems(search.value);
+
+            // trigger enter animation
+            void itemList.offsetWidth;
+            const onIn = (ev) => {
+                if (ev && ev.target !== itemList) return;
+                itemList.removeEventListener('animationend', onIn);
+                itemList.classList.remove('anim-in');
+                animating = false;
+            };
+            itemList.addEventListener('animationend', onIn);
+            itemList.classList.add('anim-in');
+        };
+
+        itemList.addEventListener('animationend', onOut, { once: true });
+        itemList.classList.add('anim-out');
+
+        // If animations are disabled (reduced-motion / no animation), run out handler immediately
+        const cs = getComputedStyle(itemList);
+        const dur = parseFloat(cs.animationDuration) || 0;
+        if (!cs.animationName || cs.animationName === 'none' || dur === 0) {
+            // call onOut without an event
+            onOut();
+        }
+    }
+
+    function renderItems(filter="") {
+        const items = currentSection === "games" ? games : movies;
+        itemList.innerHTML = "";
+        items
+            .filter(item => item.name.toLowerCase().includes(filter.toLowerCase()))
+            .forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item.name;
+                li.onclick = () => window.location = item.url;
+                itemList.appendChild(li);
+            });
+    }
+
+    if (gamesBtn && moviesBtn && search && itemList) {
+        gamesBtn.addEventListener('click', () => switchSection("games"));
+        moviesBtn.addEventListener('click', () => switchSection("movies"));
+        search.addEventListener('input', () => renderItems(search.value));
+    }
+
+    renderItems();
+});
