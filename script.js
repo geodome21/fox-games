@@ -91,6 +91,7 @@ const games = [
     { name: "Super Star Car", url: "games/Super star car/index.html" },
     { name: "Tanuki sunset", url: "games/tanuki sunset/index.html" },
     { name: "tattletail", url: "games/tattletail/index.html" },
+    { name: "temple run 2", url: "games/Temple run 2/index.html" },
     { name: "thats not my neighbor", url: "games/thats not my neighbor/index.html" },
     { name: "Time shooter", url: "games/Time shooter/index.html" },
     { name: "Tom Clancys Rainbow Six", url: "games/Tom Clancys Rainbow Six/index.html" },
