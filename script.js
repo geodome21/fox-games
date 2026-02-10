@@ -68,7 +68,6 @@ const games = [
     { name: "Papas Cheeseria", url: "games/papas cheeseria/index.html" },
     { name: "Papas Hot Doggeria", url: "games/papas doggeria/index.html" },
     { name: "Papas Pastaria", url: "games/papas pastaria/index.html" },
-    { name: "Papas Pizzaria", url: "games/papas pizzaria/index.html" },
     { name: "Papas sushiria", url: "games/papas sushiria/index.html" },
     { name: "Parking Fury", url: "games/Parking Fury/index.html" },
     { name: "Peggle", url: "games/Peggle/index.html" },
