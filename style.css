@@ -196,6 +196,88 @@ header button {
     z-index: 25;
 }
 
+/* Preview overlay/modal for movie iframe */
+.preview-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.45);
+    z-index: 60;
+}
+
+.preview-overlay.visible { display: flex; }
+
+.preview-container {
+    width: min(920px, 92vw);
+    height: min(540px, 72vh);
+    background: rgba(12,14,18,0.95);
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-header {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+}
+
+.preview-title {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.preview-close {
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.preview-iframe {
+    width: 100%;
+    height: calc(100% - 42px);
+    border: none;
+    background: black;
+}
+
+/* actions in header */
+.preview-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.preview-actions button {
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.preview-fullscreen { font-size: 15px; }
+/* exit button removed */
+
+.preview-overlay .preview-container:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+}
+
 .banner,
 #pageBanner {
     background: rgba(255,255,255,0.04);

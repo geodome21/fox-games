@@ -170,9 +170,111 @@ document.addEventListener('DOMContentLoaded', () => {
             .forEach(item => {
                 const li = document.createElement("li");
                 li.textContent = item.name;
-                li.onclick = () => window.location = item.url;
+                if (currentSection === 'games') {
+                    li.onclick = () => window.location = item.url;
+                } else {
+                    li.onclick = (e) => {
+                        e.preventDefault();
+                        openPreview(item.url, item.name);
+                    };
+                }
                 itemList.appendChild(li);
             });
+    }
+
+    // preview iframe modal for movies
+    let previewContainer = null;
+    function ensurePreview() {
+        if (previewContainer) return previewContainer;
+        const overlay = document.createElement('div');
+        overlay.id = 'previewOverlay';
+        overlay.className = 'preview-overlay';
+
+        const container = document.createElement('div');
+        container.id = 'previewContainer';
+        container.className = 'preview-container';
+
+        const header = document.createElement('div');
+        header.className = 'preview-header';
+        const title = document.createElement('div');
+        title.className = 'preview-title';
+        header.appendChild(title);
+
+        const actions = document.createElement('div');
+        actions.className = 'preview-actions';
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'preview-fullscreen';
+        fullscreenBtn.title = 'Toggle fullscreen';
+        fullscreenBtn.textContent = '⤢';
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'preview-close';
+        closeBtn.textContent = '✕';
+        closeBtn.title = 'Close preview';
+        closeBtn.addEventListener('click', closePreview);
+
+        actions.appendChild(fullscreenBtn);
+        actions.appendChild(closeBtn);
+
+        const iframe = document.createElement('iframe');
+        iframe.className = 'preview-iframe';
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-forms allow-popups');
+
+        container.appendChild(header);
+        header.appendChild(actions);
+        container.appendChild(iframe);
+        overlay.appendChild(container);
+        document.body.appendChild(overlay);
+
+        overlay.addEventListener('click', (ev) => {
+            if (ev.target === overlay) closePreview();
+        });
+
+        previewContainer = { overlay, container, iframe, title, fullscreenBtn, closeBtn };
+        // fullscreen toggle
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                container.requestFullscreen?.().catch(() => {});
+            } else {
+                document.exitFullscreen?.().catch(() => {});
+            }
+        });
+
+        // update fullscreen icon on change
+        document.addEventListener('fullscreenchange', () => {
+            const fs = document.fullscreenElement === container;
+            fullscreenBtn.textContent = fs ? '⤡' : '⤢';
+        });
+
+        // (exit button removed; close button handles closing)
+        return previewContainer;
+    }
+
+    function openPreview(url, name) {
+        const p = ensurePreview();
+        p.title.textContent = name || '';
+        // load into iframe without navigating away
+        p.iframe.src = url;
+        p.overlay.classList.add('visible');
+        // focus for keyboard close
+        document.addEventListener('keydown', escClose);
+    }
+
+    function closePreview() {
+        if (!previewContainer) return;
+        // if fullscreen, exit first
+        if (document.fullscreenElement === previewContainer.container) {
+            document.exitFullscreen?.().catch(() => {});
+        }
+        previewContainer.iframe.src = 'about:blank';
+        previewContainer.overlay.classList.remove('visible');
+        document.removeEventListener('keydown', escClose);
+    }
+
+    function escClose(e) {
+        if (e.key === 'Escape') closePreview();
     }
 
     if (gamesBtn && moviesBtn && search && itemList) {
