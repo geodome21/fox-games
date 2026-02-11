@@ -88,6 +88,8 @@ const games = [
     { name: "Stickman Hook", url: "games/Stickman Hook/index.html" },
     { name: "Subway Surfers", url: "games/Subway Surfers/index.html" },
     { name: "Superhot", url: "games/Super Hot/index.html" },
+    { name: "Super Mario Land", url: "games/super mario land/index.html" },
+    { name: "Super Smash Bros 64", url: "games/Super Smash Bros 64/index.html" },
     { name: "Super Star Car", url: "games/Super star car/index.html" },
     { name: "Tanuki sunset", url: "games/tanuki sunset/index.html" },
     { name: "tattletail", url: "games/tattletail/index.html" },
