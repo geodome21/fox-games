@@ -118,6 +118,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let animating = false;
 
+    const movieCredit = document.getElementById("movieCredit");
+
+    function updateMovieCredit() {
+        if (movieCredit) {
+            if (currentSection === "movies") {
+                movieCredit.classList.add("show");
+            } else {
+                movieCredit.classList.remove("show");
+            }
+        }
+    }
+
     function switchSection(section) {
         if (section === currentSection || animating) return;
         animating = true;
@@ -138,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 moviesBtn.classList.add("section-active");
             }
 
+            updateMovieCredit();
             renderItems(search.value);
 
             // trigger enter animation
