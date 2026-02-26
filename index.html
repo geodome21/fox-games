@@ -4,13 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Geo Games</title>
+    <!-- Fallback icons so browsers always show an icon -->
+    <link rel="icon" href="images/placeholder-grey.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="images/placeholder-grey.svg">
+    <meta name="theme-color" content="#0b0b0f">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark">
 <canvas id="bgCanvas" aria-hidden="true"></canvas>
 <header>
     <h1>Geo Games</h1>
-    <input type="text" id="search" placeholder="Search...">
+    <input type="text" id="search" placeholder="Search games...">
     <div id="sectionNav">
         <button id="gamesBtn" class="section-active">Games</button>
         <button id="moviesBtn">Movies</button>
@@ -18,12 +22,12 @@
 </header>
 
 <main>
-    <ul id="itemList" class="list-section"></ul>
+    <div id="gamesContainer" class="games-container"></div>
+    <div id="moviesContainer" class="movies-container hidden"></div>
 </main>
 
 <div id="movieCredit" class="movie-credit">Credits to Cortlin Ferraiuolo for the movies</div>
 
-<script src="banner/banner.js" defer></script>
 <script src="background.js" defer></script>
 <script src="script.js"></script>
 </body>

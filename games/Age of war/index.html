@@ -65,10 +65,38 @@
       background: black;
       display: block;
     }
+    #banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      z-index: 1000;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    #banner a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    #banner a:hover {
+      text-decoration: underline;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle@0.2.0-nightly.2025.10.2/ruffle.min.js"></script>
 </head>
 <body>
+  <div id="banner">
+    <a href="https://geodome21.github.io/forksnfrogz/" target="_blank">
+      NEW WEBSITE OUT USE THIS ONE
+    </a>
+  </div>
   <div id="flash-container"></div>
   <div class="black-box" id="box-top"></div>
   <div class="black-box" id="box-bottom"></div>
