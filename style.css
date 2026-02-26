@@ -1,7 +1,7 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
     background: var(--bg);
     color: var(--text);
     transition: 0.3s;
@@ -9,46 +9,31 @@ body {
     position: relative;
 }
 
-:root { --bg: #0b0b0f; --text: #ffffff; }
+:root { --bg:#0b0b0f; --text:#ffffff; }
 /* dark theme */
-.dark { --bg: #0b0b0f; --text: #ffffff; }
-
+.dark { --bg:#0b0b0f; --text:#ffffff; }
 header {
-    padding: 20px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    background: rgba(20, 22, 26, 0.45);
+    padding:20px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    /* translucent surface so background shows through */
+    background: rgba(20,22,26,0.45);
     backdrop-filter: blur(6px);
-    position: sticky;
-    top: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    position:sticky;
+    top:0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
     z-index: 30;
-}
+} 
 
-header h1 {
-    margin: 0;
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-}
-
-#search {
-    flex: 1;
-    padding: 10px 16px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.08);
+header button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: transparent;
     color: var(--text);
-    transition: all 0.2s ease;
-}
-
-#search:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+    cursor: pointer;
 }
 
 #sectionNav {
@@ -61,225 +46,109 @@ header h1 {
     padding: 8px 16px;
     font-size: 14px;
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255,255,255,0.12);
     background: transparent;
     color: var(--text);
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-weight: 500;
+    transition: background 0.2s ease;
 }
 
 #sectionNav button:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255,255,255,0.08);
 }
 
 #sectionNav button.section-active {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
-    color: #ffffff;
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.3);
 }
 
-main {
+#search {
+    flex:1;
+    padding:10px;
+    font-size:16px;
+}
+#gameList, #movieList, #itemList {
+    list-style: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     position: relative;
     z-index: 15;
 }
 
-.games-container,
-.movies-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 30px 20px;
-    max-width: 1400px;
-    margin: 0 auto;
+/* list enter/exit animations */
+@keyframes listFadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-10px); }
 }
 
-@media (max-width: 1200px) {
-    .games-container,
-    .movies-container {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 16px;
-        padding: 24px 16px;
-    }
+@keyframes listFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 768px) {
-    .games-container,
-    .movies-container {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        gap: 12px;
-        padding: 16px 12px;
-    }
+.list-section.anim-out {
+    animation: listFadeOut 200ms cubic-bezier(.2,.9,.2,1) forwards;
 }
 
-@media (max-width: 480px) {
-    .games-container,
-    .movies-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        padding: 12px 8px;
-    }
+.list-section.anim-in {
+    animation: listFadeIn 260ms cubic-bezier(.2,.9,.2,1) both;
 }
 
-/* Container animation */
-.games-container.anim-out,
-.movies-container.anim-out {
-    animation: containerFadeOut 200ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
-}
-
-.games-container.anim-in,
-.movies-container.anim-in {
-    animation: containerFadeIn 300ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
-}
-
-.games-container.hidden,
-.movies-container.hidden {
+.list-section.hidden {
     display: none;
 }
 
-@keyframes containerFadeOut {
-    from {
-        opacity: 1;
-        transform: scale(0.98);
-    }
-    to {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-}
 
-@keyframes containerFadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* Game Cards */
-.game-card {
-    cursor: pointer;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    height: 240px;
-    background: rgba(30, 30, 40, 0.6);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 768px) {
-    .game-card {
-        height: 180px;
-    }
-}
-
-@media (max-width: 480px) {
-    .game-card {
-        height: 140px;
-    }
-}
-
-.game-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(40, 40, 55, 0.8);
-}
-
-.game-card:active {
-    transform: translateY(-4px) scale(1.01);
-}
-
-.game-image-container {
+.list-section li {
+    display: block;
     width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #1e1e28 0%, #2a2a3a 100%);
-    overflow: hidden;
-}
-
-.game-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease, filter 0.4s ease;
-    filter: brightness(0.8) saturate(0.9);
-}
-
-.game-card:hover .game-image {
-    transform: scale(1.1);
-    filter: brightness(1) saturate(1.1);
-}
-
-.game-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.4) 60%,
-        rgba(0, 0, 0, 0.8) 100%
-    );
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    padding: 16px;
-    transition: background 0.3s ease;
-    z-index: 2;
-}
-
-.game-card:hover .game-overlay {
-    background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.2) 40%,
-        rgba(0, 0, 0, 0.9) 100%
-    );
-}
-
-.game-title {
+    max-width: 640px;
+    padding: 10px 16px;
     margin: 0;
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-    line-height: 1.2;
-    transition: all 0.3s ease;
+    border-radius: 8px;
+    background: rgba(22,24,28,0.40);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
 }
 
-.game-card:hover .game-title {
-    font-size: 15px;
-    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
+
+#itemList li:focus,
+.list-section li:focus,
+.list-section li:focus-visible {
+    outline: none;
+    box-shadow: none;
 }
 
-@media (max-width: 768px) {
-    .game-title {
-        font-size: 13px;
-    }
-    
-    .game-card:hover .game-title {
-        font-size: 13px;
-    }
+.dark .list-section li {
+    background: rgba(255,255,255,0.08);
 }
 
-@media (max-width: 480px) {
-    .game-title {
-        font-size: 12px;
-    }
+/* keep interactions but visually plain */
+#itemList li:hover,
+.list-section li:hover {
+    transform: translateY(-3px);
+    background: rgba(0,0,0,0.10);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 
-.movie-card .game-image-container {
-    background: linear-gradient(135deg, #2a1f4e 0%, #3a1f5e 100%);
+.itemList li:active,
+.list-section li:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.10);
+}
+
+#gameList li:focus,
+#gameList li:focus-visible {
+    outline: none;
+    box-shadow: none;
 }
 
 /* Background canvas */
@@ -288,29 +157,50 @@ main {
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
-    pointer-events: none;
+    z-index: 0; /* behind content */
+    pointer-events: none; /* don't block clicks */
     display: block;
     opacity: 0.95;
     transition: opacity 0.3s ease;
 }
 
+/* slightly reduce particles opacity on small screens */
 @media (max-width: 600px) {
-    #bgCanvas {
-        opacity: 0.7;
+    #bgCanvas { opacity: 0.7; }
+}
+
+/* Respect user's reduced motion preference: disable background animation */
+@media (prefers-reduced-motion: reduce) {
+    #bgCanvas { display: none !important; }
+    .list-section.anim-out,
+    .list-section.anim-in {
+        animation: none !important;
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    #bgCanvas {
-        display: none !important;
-    }
-    .games-container.anim-out,
-    .movies-container.anim-out,
-    .games-container.anim-in,
-    .movies-container.anim-in {
-        animation: none !important;
-    }
+/* Page banner shown below the header (placeholder) */
+.banner,
+#pageBanner {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 20px;
+    margin: 8px 0 0 0;
+    text-align: center;
+    border-radius: 8px;
+    color: var(--text);
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(4px);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 25;
+}
+
+/* Preview modal removed — movies open in a new tab */
+
+.banner,
+#pageBanner {
+    background: rgba(255,255,255,0.04);
 }
 
 /* Movie credit text */
@@ -319,7 +209,7 @@ main {
     bottom: 10px;
     left: 10px;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255,255,255,0.5);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
@@ -328,23 +218,4 @@ main {
 
 .movie-credit.show {
     opacity: 1;
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    transition: background 0.2s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.4);
 }
